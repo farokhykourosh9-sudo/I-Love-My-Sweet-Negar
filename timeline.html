@@ -93,7 +93,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 80vh;
+            min-height: 100vh;
+            padding: 20px 0;
         }
 
         .glass-card {
@@ -105,11 +106,15 @@
             padding: 30px 24px;
             box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
             width: 100%;
+            max-height: 95vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
             text-align: center;
             margin-bottom: 20px;
+            flex-shrink: 0;
         }
         .header .emoji-big {
             font-size: clamp(3.5rem, 10vw, 4.5rem);
@@ -133,27 +138,33 @@
             font-size: clamp(0.9rem, 2.5vw, 1.05rem);
         }
 
-        /* ===== لیست تایم‌لاین ===== */
+        /* ===== لیست تایم‌لاین با اسکرول عمودی ===== */
         .timeline-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-top: 16px;
-            max-height: 400px;
+            margin-top: 8px;
+            padding-right: 4px;
+            padding-bottom: 8px;
+            flex: 1;
             overflow-y: auto;
             overflow-x: hidden;
-            padding-right: 4px;
+            min-height: 200px;
+            max-height: 500px;
         }
         .timeline-list::-webkit-scrollbar {
-            width: 4px;
+            width: 5px;
         }
         .timeline-list::-webkit-scrollbar-track {
             background: rgba(255,255,255,0.2);
             border-radius: 10px;
         }
         .timeline-list::-webkit-scrollbar-thumb {
-            background: #ff6b9d;
+            background: linear-gradient(135deg, #ff6b9d, #c084fc);
             border-radius: 10px;
+        }
+        .timeline-list::-webkit-scrollbar-thumb:hover {
+            background: #ff6b9d;
         }
 
         .timeline-item {
@@ -168,6 +179,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            flex-shrink: 0;
         }
         .timeline-item:hover {
             background: rgba(255, 255, 255, 0.55);
@@ -230,9 +242,10 @@
 
         /* ===== فرم اضافه کردن ===== */
         .add-form {
-            margin-top: 20px;
-            padding-top: 18px;
+            margin-top: 16px;
+            padding-top: 16px;
             border-top: 2px dashed rgba(255, 107, 157, 0.3);
+            flex-shrink: 0;
         }
         .add-form .form-row {
             display: flex;
@@ -284,6 +297,14 @@
         }
 
         /* ===== دکمه برگشت ===== */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+            flex-shrink: 0;
+        }
         .back-btn {
             display: inline-flex;
             align-items: center;
@@ -300,19 +321,10 @@
             box-shadow: 0 6px 18px rgba(192, 132, 252, 0.25);
             transition: all 0.3s ease;
             text-decoration: none;
-            margin-top: 16px;
         }
         .back-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 28px rgba(192, 132, 252, 0.4);
-        }
-
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 16px;
         }
 
         .empty-msg {
@@ -330,10 +342,15 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
             body { padding: 10px; }
-            .app-container { min-height: 70vh; }
-            .glass-card { padding: 20px 16px; border-radius: 32px; }
+            .app-container { min-height: 100vh; padding: 10px 0; }
+            .glass-card { 
+                padding: 20px 16px; 
+                border-radius: 32px;
+                max-height: 98vh;
+            }
             .timeline-item { padding: 12px 14px; gap: 10px; }
             .timeline-icon { font-size: 1.6rem; width: 38px; }
+            .timeline-list { max-height: 350px; min-height: 150px; }
             .add-form .form-row { flex-direction: column; }
             .add-form input, .add-form select { min-width: 100%; }
             .btn-add { width: 100%; }
@@ -344,6 +361,11 @@
             .glass-card { padding: 16px 12px; border-radius: 28px; }
             .timeline-item { padding: 10px 12px; }
             .timeline-icon { font-size: 1.3rem; width: 32px; }
+            .timeline-list { max-height: 280px; min-height: 120px; }
+        }
+
+        @media (min-height: 800px) {
+            .timeline-list { max-height: 600px; }
         }
     </style>
 </head>
@@ -377,7 +399,7 @@
                 <p>هر لحظه با تو، یه خاطره‌ست...</p>
             </div>
 
-            <!-- ===== لیست دیت‌ها ===== -->
+            <!-- ===== لیست دیت‌ها با اسکرول عمودی ===== -->
             <div class="timeline-list" id="timelineList">
                 <!-- آیتم‌ها توسط جاوااسکریپت ساخته میشن -->
             </div>
@@ -479,7 +501,6 @@
                     console.log('خطا در بارگذاری داده');
                 }
             }
-            // اگر داده‌ای نبود، داده‌های پیش‌فرض رو برمیگردونه
             return getDefaultData();
         }
 
@@ -546,7 +567,7 @@
             };
 
             timelineData.push(newItem);
-            saveData(timelineData);  // ذخیره در localStorage
+            saveData(timelineData);
             renderTimeline();
 
             // پاک کردن فیلدها
@@ -564,7 +585,7 @@
         function deleteTimelineItem(id) {
             if (confirm('آیا مطمئنی میخوای این خاطره رو حذف کنی؟ 😢')) {
                 timelineData = timelineData.filter(item => item.id !== id);
-                saveData(timelineData);  // ذخیره در localStorage
+                saveData(timelineData);
                 renderTimeline();
             }
         }
@@ -573,7 +594,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             renderTimeline();
 
-            // اضافه کردن با Enter
             const inputs = ['newDate', 'newTitle', 'newDesc'];
             inputs.forEach(id => {
                 document.getElementById(id).addEventListener('keypress', function(e) {
