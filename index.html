@@ -21,40 +21,51 @@
         body {
             font-family: 'Vazirmatn', sans-serif;
             background: linear-gradient(145deg, #ffd6e0 0%, #fbc2eb 50%, #a18cd1 100%);
+            background-attachment: fixed;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 12px;
+            padding: 10px;
             position: relative;
             overflow-y: auto;
             overflow-x: hidden;
             min-height: 100vh;
         }
 
+        /* گرادیان ثابت در پس‌زمینه */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(145deg, #ffd6e0 0%, #fbc2eb 50%, #a18cd1 100%);
+            z-index: -1;
+        }
+
         .sticker {
             position: fixed;
-            font-size: clamp(2rem, 6vw, 4rem);
+            font-size: clamp(1.5rem, 4vw, 3rem);
             pointer-events: none;
             z-index: 2;
             animation: floatSticker 8s ease-in-out infinite;
             filter: drop-shadow(0 4px 12px rgba(255, 107, 157, 0.3));
-            opacity: 0.7;
+            opacity: 0.5;
         }
 
-        .sticker:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; font-size: clamp(2.5rem, 7vw, 5rem); }
-        .sticker:nth-child(2) { top: 8%; right: 8%; animation-delay: 1.2s; }
-        .sticker:nth-child(3) { bottom: 12%; left: 6%; animation-delay: 2.5s; }
-        .sticker:nth-child(4) { bottom: 8%; right: 6%; animation-delay: 0.8s; font-size: clamp(3rem, 8vw, 5.5rem); }
-        .sticker:nth-child(5) { top: 45%; left: 2%; animation-delay: 3.2s; font-size: clamp(1.8rem, 5vw, 3.5rem); opacity: 0.5; }
-        .sticker:nth-child(6) { top: 40%; right: 2%; animation-delay: 1.8s; font-size: clamp(1.8rem, 5vw, 3.5rem); opacity: 0.5; }
-        .sticker:nth-child(7) { top: 20%; left: 50%; animation-delay: 4s; font-size: clamp(2rem, 5.5vw, 4rem); opacity: 0.4; }
-        .sticker:nth-child(8) { bottom: 25%; right: 50%; animation-delay: 3.5s; font-size: clamp(2rem, 5.5vw, 4rem); opacity: 0.4; }
+        .sticker:nth-child(1) { top: 3%; left: 3%; animation-delay: 0s; font-size: clamp(2rem, 5vw, 3.5rem); }
+        .sticker:nth-child(2) { top: 5%; right: 5%; animation-delay: 1.2s; }
+        .sticker:nth-child(3) { bottom: 8%; left: 4%; animation-delay: 2.5s; }
+        .sticker:nth-child(4) { bottom: 5%; right: 4%; animation-delay: 0.8s; font-size: clamp(2.2rem, 6vw, 4rem); }
+        .sticker:nth-child(5) { top: 40%; left: 1%; animation-delay: 3.2s; font-size: clamp(1.2rem, 3vw, 2rem); opacity: 0.3; }
+        .sticker:nth-child(6) { top: 35%; right: 1%; animation-delay: 1.8s; font-size: clamp(1.2rem, 3vw, 2rem); opacity: 0.3; }
 
         @keyframes floatSticker {
             0% { transform: translateY(0px) rotate(0deg) scale(1); }
-            25% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
+            25% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
             50% { transform: translateY(5px) rotate(-3deg) scale(0.95); }
-            75% { transform: translateY(-10px) rotate(4deg) scale(1.02); }
+            75% { transform: translateY(-8px) rotate(4deg) scale(1.02); }
             100% { transform: translateY(0px) rotate(0deg) scale(1); }
         }
 
@@ -71,15 +82,15 @@
         .bubble {
             position: absolute;
             bottom: -60px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             animation: rise linear infinite;
         }
-        .bubble:nth-child(1) { width: 80px; height: 80px; left: 5%; animation-duration: 16s; }
-        .bubble:nth-child(2) { width: 40px; height: 40px; left: 25%; animation-duration: 12s; animation-delay: 2s; }
-        .bubble:nth-child(3) { width: 110px; height: 110px; left: 45%; animation-duration: 22s; animation-delay: 4s; }
-        .bubble:nth-child(4) { width: 60px; height: 60px; left: 70%; animation-duration: 14s; animation-delay: 1s; }
-        .bubble:nth-child(5) { width: 90px; height: 90px; left: 88%; animation-duration: 19s; animation-delay: 3s; }
+        .bubble:nth-child(1) { width: 60px; height: 60px; left: 5%; animation-duration: 16s; }
+        .bubble:nth-child(2) { width: 30px; height: 30px; left: 25%; animation-duration: 12s; animation-delay: 2s; }
+        .bubble:nth-child(3) { width: 80px; height: 80px; left: 45%; animation-duration: 22s; animation-delay: 4s; }
+        .bubble:nth-child(4) { width: 45px; height: 45px; left: 70%; animation-duration: 14s; animation-delay: 1s; }
+        .bubble:nth-child(5) { width: 70px; height: 70px; left: 88%; animation-duration: 19s; animation-delay: 3s; }
         @keyframes rise {
             0% { transform: translateY(0) scale(0.6); opacity: 0.3; }
             50% { opacity: 0.8; }
@@ -90,23 +101,23 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 500px;
+            max-width: 420px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 12px 0;
+            padding: 8px 0;
         }
 
         .glass-card {
             background: rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            border-radius: 44px;
-            padding: 24px 18px;
-            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08), 0 0 40px rgba(255, 107, 157, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 32px;
+            padding: 18px 14px;
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.06), 0 0 40px rgba(255, 107, 157, 0.03);
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             transform: scale(1);
             opacity: 1;
@@ -122,49 +133,49 @@
         h1, h2, h3 {
             color: #2d1b26;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
-        h1 { font-size: clamp(1.5rem, 5vw, 2rem); }
-        h2 { font-size: clamp(1.3rem, 4.5vw, 1.8rem); }
+        h1 { font-size: clamp(1.3rem, 4.5vw, 1.7rem); }
+        h2 { font-size: clamp(1.1rem, 4vw, 1.5rem); }
         p {
             color: #3f2e38;
-            line-height: 1.7;
-            margin-bottom: 16px;
-            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            line-height: 1.6;
+            margin-bottom: 12px;
+            font-size: clamp(0.85rem, 2.2vw, 1rem);
         }
         .emoji-big {
-            font-size: clamp(3.5rem, 12vw, 5rem);
+            font-size: clamp(3rem, 10vw, 4rem);
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             animation: gentle-pulse 2.4s infinite;
         }
         @keyframes gentle-pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.08); }
+            50% { transform: scale(1.06); }
             100% { transform: scale(1); }
         }
 
         .btn-group {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 16px;
+            margin-top: 12px;
         }
 
         .btn {
-            padding: 12px 24px;
+            padding: 10px 18px;
             border: none;
-            border-radius: 60px;
+            border-radius: 50px;
             font-family: inherit;
-            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
             font-weight: 700;
             cursor: pointer;
             transition: all 0.25s ease;
-            box-shadow: 0 6px 18px rgba(255, 107, 157, 0.25);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
             color: #fff;
             flex: 1 0 auto;
-            min-width: 100px;
+            min-width: 80px;
             touch-action: manipulation;
             text-decoration: none;
             text-align: center;
@@ -174,11 +185,9 @@
         .btn-primary {
             background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
         }
-
         .btn-secondary {
             background: linear-gradient(135deg, #c084fc, #a855f7);
         }
-
         .btn-outline {
             background: transparent;
             border: 2px solid #ff6b9d;
@@ -194,63 +203,64 @@
         .continue-btn {
             background: linear-gradient(45deg, #ff6b9d, #c084fc);
             color: #fff;
-            padding: 14px 36px;
-            font-size: clamp(1.1rem, 3vw, 1.3rem);
-            border-radius: 60px;
+            padding: 12px 28px;
+            font-size: clamp(1rem, 2.8vw, 1.2rem);
+            border-radius: 50px;
             border: none;
-            box-shadow: 0 10px 32px rgba(192, 132, 252, 0.35);
+            box-shadow: 0 8px 28px rgba(192, 132, 252, 0.3);
             width: 100%;
-            max-width: 240px;
-            margin: 8px auto 0;
+            max-width: 200px;
+            margin: 6px auto 0;
             touch-action: manipulation;
         }
 
+        /* ===== STEP 4 ===== */
         .row-split {
             display: flex;
             flex-direction: row;
             align-items: stretch;
-            gap: 12px;
-            margin-top: 8px;
+            gap: 8px;
+            margin-top: 6px;
         }
 
         .timer-box {
-            flex: 1.8;
+            flex: 1.6;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
-            border-radius: 24px;
-            padding: 12px 8px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 18px;
+            padding: 10px 6px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6px 8px;
+            gap: 4px 6px;
             align-content: center;
-            min-height: 140px;
+            min-height: 110px;
             order: 2;
         }
 
         .info-box {
-            flex: 1.2;
-            background: rgba(255, 255, 255, 0.25);
+            flex: 1.4;
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
-            border-radius: 24px;
-            padding: 12px 10px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 18px;
+            padding: 10px 8px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
             display: flex;
             flex-direction: column;
-            min-height: 140px;
-            max-height: 380px;
+            min-height: 110px;
+            max-height: 220px;
             order: 1;
             overflow-y: auto;
             overflow-x: hidden;
         }
 
         .info-box::-webkit-scrollbar {
-            width: 4px;
+            width: 3px;
         }
         .info-box::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
             border-radius: 10px;
         }
         .info-box::-webkit-scrollbar-thumb {
@@ -260,19 +270,19 @@
 
         .info-box h4 {
             color: #2d1b26;
-            font-size: clamp(0.85rem, 2.2vw, 1rem);
-            margin-bottom: 8px;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            margin-bottom: 4px;
             font-weight: 700;
-            border-bottom: 2px dashed rgba(255, 107, 157, 0.3);
-            padding-bottom: 6px;
+            border-bottom: 1.5px dashed rgba(255, 107, 157, 0.25);
+            padding-bottom: 4px;
             flex-shrink: 0;
             position: sticky;
-            top: -12px;
-            background: rgba(255,255,255,0.3);
+            top: -10px;
+            background: rgba(255,255,255,0.2);
             backdrop-filter: blur(4px);
             z-index: 5;
             border-radius: 4px;
-            padding-top: 4px;
+            padding-top: 3px;
         }
 
         #infoList {
@@ -283,10 +293,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 6px 4px;
-            font-size: clamp(0.75rem, 1.8vw, 0.9rem);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-            gap: 6px;
+            padding: 4px 2px;
+            font-size: clamp(0.65rem, 1.6vw, 0.75rem);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            gap: 4px;
         }
         .info-item:last-child {
             border-bottom: none;
@@ -296,23 +306,23 @@
             font-weight: 400;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
             flex: 1;
-            font-size: clamp(0.7rem, 1.6vw, 0.85rem);
+            font-size: clamp(0.6rem, 1.4vw, 0.7rem);
         }
         .info-value {
             color: #2d1b26;
             font-weight: 700;
             flex-shrink: 0;
-            font-size: clamp(0.7rem, 1.6vw, 0.85rem);
+            font-size: clamp(0.6rem, 1.4vw, 0.7rem);
         }
         .info-delete-btn {
-            background: rgba(255, 0, 0, 0.1);
+            background: rgba(255, 0, 0, 0.08);
             border: none;
             border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            font-size: 0.6rem;
+            width: 18px;
+            height: 18px;
+            font-size: 0.5rem;
             cursor: pointer;
             color: #e74c3c;
             transition: all 0.3s ease;
@@ -327,49 +337,49 @@
         }
 
         .add-info-form {
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 2px dashed rgba(255,107,157,0.2);
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1.5px dashed rgba(255,107,157,0.2);
             flex-shrink: 0;
             position: sticky;
-            bottom: -12px;
-            background: rgba(255,255,255,0.3);
+            bottom: -10px;
+            background: rgba(255,255,255,0.2);
             backdrop-filter: blur(4px);
-            border-radius: 12px;
-            padding: 6px 4px;
+            border-radius: 10px;
+            padding: 5px 3px;
         }
         .add-info-form .form-row {
             display: flex;
-            gap: 4px;
+            gap: 3px;
             flex-wrap: wrap;
         }
         .add-info-form input, .add-info-form select {
-            padding: 4px 8px;
-            border: 2px solid rgba(255,255,255,0.5);
-            border-radius: 10px;
-            background: rgba(255,255,255,0.4);
+            padding: 3px 6px;
+            border: 1.5px solid rgba(255,255,255,0.4);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.3);
             font-family: inherit;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: #2d1b26;
             outline: none;
             transition: all 0.3s ease;
             flex: 1;
-            min-width: 60px;
+            min-width: 50px;
         }
         .add-info-form input:focus, .add-info-form select:focus {
             border-color: #ff6b9d;
-            background: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.5);
         }
         .add-info-form input::placeholder {
             color: #8a7a82;
-            font-size: 0.65rem;
+            font-size: 0.55rem;
         }
         .btn-add-info {
-            padding: 4px 12px;
+            padding: 3px 10px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-family: inherit;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 700;
             cursor: pointer;
             background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
@@ -378,31 +388,31 @@
             white-space: nowrap;
         }
         .btn-add-info:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 107, 157, 0.25);
         }
 
         .time-unit {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(2px);
             -webkit-backdrop-filter: blur(2px);
-            border-radius: 16px;
-            padding: 6px 4px;
+            border-radius: 12px;
+            padding: 4px 2px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
         .time-unit span {
             display: block;
-            font-size: clamp(2rem, 6vw, 3rem);
+            font-size: clamp(1.6rem, 5vw, 2.4rem);
             font-weight: 900;
             color: #d94a7a;
             line-height: 1.1;
         }
         .time-unit small {
-            font-size: clamp(0.6rem, 1.6vw, 0.75rem);
+            font-size: clamp(0.5rem, 1.4vw, 0.6rem);
             color: #4f3a44;
             font-weight: 500;
             display: block;
@@ -411,31 +421,31 @@
 
         .countdown-header {
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .countdown-header span {
-            font-size: clamp(3rem, 10vw, 4.2rem);
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
         .countdown-header h2 {
-            font-size: clamp(1.2rem, 4vw, 1.7rem);
-            margin-bottom: 2px;
+            font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+            margin-bottom: 1px;
         }
         .countdown-header p {
-            font-size: clamp(0.8rem, 2vw, 0.95rem);
+            font-size: clamp(0.7rem, 1.8vw, 0.85rem);
             margin-top: -2px;
             margin-bottom: 0;
         }
 
         .love-message {
-            margin-top: 16px;
-            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px 10px;
-            border-radius: 24px;
+            margin-top: 12px;
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 8px;
+            border-radius: 18px;
             backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
             text-align: center;
         }
         .love-message strong {
@@ -447,135 +457,142 @@
         }
 
         .date-link-box {
-            margin-top: 16px;
-            border-top: 2px dashed rgba(255,107,157,0.3);
-            padding-top: 14px;
+            margin-top: 12px;
+            border-top: 1.5px dashed rgba(255,107,157,0.25);
+            padding-top: 10px;
         }
         .date-link-box a {
             text-decoration: none;
             display: block;
         }
         .date-link-box .date-card {
-            background: rgba(255,255,255,0.3);
-            border-radius: 20px;
-            padding: 12px 16px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 10px 14px;
             transition: all 0.3s ease;
-            border: 2px solid rgba(255,107,157,0.2);
+            border: 1.5px solid rgba(255,107,157,0.15);
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        .date-link-box .date-card:hover {
-            transform: translateX(-5px);
-            background: rgba(255,255,255,0.5);
-            box-shadow: 0 4px 15px rgba(255,107,157,0.1);
+        .date-link-box .date-card:active {
+            transform: scale(0.97);
         }
         .date-link-box .date-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         .date-link-box .date-icon {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
         }
         .date-link-box .date-label {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: #7a5a68;
         }
         .date-link-box .date-value {
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: #d94a7a;
         }
         .date-link-box .date-arrow {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #d94a7a;
         }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
-            body { padding: 8px; }
+            body { padding: 6px; }
             .app-container { 
                 min-height: 100vh;
-                padding: 8px 0;
+                padding: 4px 0;
             }
             .glass-card { 
-                padding: 16px 12px; 
+                padding: 14px 10px; 
                 border-radius: 28px;
+                border-width: 1.5px;
             }
             .row-split { 
                 flex-direction: column; 
-                gap: 8px; 
+                gap: 6px; 
             }
             .info-box { 
-                min-height: 120px;
-                max-height: 250px;
-                border-radius: 16px;
-                padding: 10px 8px;
+                min-height: 100px;
+                max-height: 200px;
+                border-radius: 14px;
+                padding: 8px 6px;
             }
             .timer-box { 
-                min-height: 100px;
-                border-radius: 16px;
-                padding: 10px 6px;
+                min-height: 90px;
+                border-radius: 14px;
+                padding: 8px 6px;
             }
             .timer-box { 
                 grid-template-columns: 1fr 1fr; 
                 gap: 4px; 
             }
-            .time-unit { padding: 4px 2px; }
-            .time-unit span { font-size: clamp(1.6rem, 5vw, 2.2rem); }
-            .btn { padding: 10px 16px; min-width: 70px; font-size: clamp(0.85rem, 2.2vw, 1rem); }
-            .continue-btn { padding: 12px 24px; font-size: clamp(1rem, 2.8vw, 1.2rem); max-width: 180px; }
-            .info-item { font-size: clamp(0.7rem, 1.8vw, 0.8rem); padding: 4px 2px; }
-            .info-box h4 { font-size: clamp(0.75rem, 2vw, 0.85rem); margin-bottom: 4px; }
-            .sticker { opacity: 0.4 !important; }
-            .add-info-form .form-row { flex-direction: column; gap: 4px; }
-            .add-info-form input, .add-info-form select { min-width: 100%; font-size: 0.65rem; padding: 4px 8px; }
-            .btn-add-info { width: 100%; font-size: 0.7rem; padding: 4px 8px; }
-            .date-link-box .date-card { padding: 10px 12px; }
-            .date-link-box .date-icon { font-size: 1.4rem; }
-            .date-link-box .date-value { font-size: 0.9rem; }
-            .info-delete-btn { width: 18px; height: 18px; font-size: 0.5rem; }
-            .love-message { padding: 8px 8px; font-size: 0.9rem; margin-top: 12px; }
-            .btn-group { gap: 8px; margin-top: 10px; }
-            .date-link-box { margin-top: 12px; padding-top: 10px; }
-            .countdown-header { margin-bottom: 10px; }
-            .countdown-header span { font-size: 2.8rem; }
-            .countdown-header h2 { font-size: 1.1rem; }
+            .time-unit { padding: 3px 2px; border-radius: 10px; }
+            .time-unit span { font-size: clamp(1.4rem, 4.5vw, 1.9rem); }
+            .time-unit small { font-size: 0.5rem; }
+            .btn { padding: 8px 14px; min-width: 60px; font-size: clamp(0.75rem, 2vw, 0.85rem); }
+            .continue-btn { padding: 10px 20px; font-size: clamp(0.9rem, 2.5vw, 1rem); max-width: 160px; }
+            .info-item { font-size: 0.6rem; padding: 3px 2px; }
+            .info-box h4 { font-size: 0.65rem; margin-bottom: 3px; padding-bottom: 3px; }
+            .sticker { opacity: 0.3 !important; }
+            .add-info-form .form-row { flex-direction: column; gap: 3px; }
+            .add-info-form input, .add-info-form select { min-width: 100%; font-size: 0.55rem; padding: 3px 6px; }
+            .btn-add-info { width: 100%; font-size: 0.6rem; padding: 3px 8px; }
+            .date-link-box .date-card { padding: 8px 12px; border-radius: 14px; }
+            .date-link-box .date-icon { font-size: 1.2rem; }
+            .date-link-box .date-value { font-size: 0.75rem; }
+            .date-link-box .date-label { font-size: 0.55rem; }
+            .date-link-box .date-arrow { font-size: 1rem; }
+            .love-message { padding: 6px 6px; font-size: 0.8rem; margin-top: 10px; border-radius: 14px; }
+            .btn-group { gap: 6px; margin-top: 8px; }
+            .date-link-box { margin-top: 10px; padding-top: 8px; }
+            .countdown-header { margin-bottom: 8px; }
+            .countdown-header span { font-size: 2.2rem; }
+            .countdown-header h2 { font-size: 1rem; }
+            .countdown-header p { font-size: 0.65rem; }
+            .info-delete-btn { width: 16px; height: 16px; font-size: 0.4rem; }
+            .emoji-big { font-size: 2.5rem; }
+            .header { margin-bottom: 8px; }
         }
 
         @media (max-width: 360px) {
-            .glass-card { padding: 12px 8px; border-radius: 24px; }
-            .time-unit span { font-size: clamp(1.3rem, 4.5vw, 1.8rem); }
-            .btn { padding: 8px 12px; min-width: 60px; font-size: clamp(0.75rem, 2vw, 0.85rem); }
-            .btn-group { gap: 6px; }
-            .info-box { max-height: 200px; min-height: 100px; }
-            .info-item { font-size: 0.65rem; padding: 3px 2px; }
-            .info-label { font-size: 0.6rem; }
-            .info-value { font-size: 0.6rem; }
-            .add-info-form input, .add-info-form select { font-size: 0.6rem; padding: 3px 6px; }
-            .btn-add-info { font-size: 0.6rem; padding: 3px 6px; }
+            .glass-card { padding: 10px 8px; border-radius: 24px; }
+            .time-unit span { font-size: clamp(1.2rem, 4vw, 1.6rem); }
+            .btn { padding: 6px 10px; min-width: 50px; font-size: clamp(0.65rem, 1.8vw, 0.75rem); }
+            .btn-group { gap: 4px; }
+            .info-box { max-height: 160px; min-height: 80px; }
+            .info-item { font-size: 0.55rem; padding: 2px 2px; }
+            .info-label { font-size: 0.5rem; }
+            .info-value { font-size: 0.5rem; }
+            .add-info-form input, .add-info-form select { font-size: 0.5rem; padding: 2px 4px; }
+            .btn-add-info { font-size: 0.55rem; padding: 2px 6px; }
+            .time-unit span { font-size: 1.2rem; }
         }
 
         @media (min-width: 768px) {
-            .app-container { max-width: 550px; }
-            .glass-card { padding: 32px 28px; border-radius: 48px; }
-            .row-split { gap: 16px; }
-            .time-unit span { font-size: 3.2rem; }
-            .info-box { max-height: 450px; }
+            .app-container { max-width: 460px; }
+            .glass-card { padding: 28px 24px; border-radius: 40px; }
+            .row-split { gap: 14px; }
+            .time-unit span { font-size: 2.8rem; }
+            .info-box { max-height: 300px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- استیکرها -->
     <div class="sticker">🌸</div>
     <div class="sticker">💖</div>
     <div class="sticker">🌺</div>
     <div class="sticker">💝</div>
     <div class="sticker">🌷</div>
     <div class="sticker">💗</div>
-    <div class="sticker">🌹</div>
-    <div class="sticker">💕</div>
 
+    <!-- حباب‌ها -->
     <div class="bubbles">
         <div class="bubble"></div>
         <div class="bubble"></div>
@@ -586,33 +603,37 @@
 
     <div class="app-container" id="app">
 
+        <!-- STEP 1 -->
         <div id="step1" class="glass-card fade-transition">
-            <span class="emoji-big">🥺🫠</span>
-            <h1>سلام خانوممم!</h1>
-            <p>یک سوال دارم ازتتتت...<br>تو <strong>نفس کوروشی</strong>؟</p>
+            <span class="emoji-big">🤔</span>
+            <h1>سلام عزیز دلم!</h1>
+            <p>یک سوال خیلی ساده دارم...<br>تو <strong>نفس کوروشی</strong>؟</p>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="goToStep2()">بله، نَفَسِتم!</button>
                 <button class="btn btn-outline" disabled>نه</button>
             </div>
         </div>
 
+        <!-- STEP 2 -->
         <div id="step2" class="glass-card hidden fade-transition">
             <span class="emoji-big">😤</span>
             <h2>دروغ نگیاااا! 😡</h2>
-            <p>چون کوروش یه نفس بیشتر نداره اونم نگاره!<br>داری راستشو میگی؟</p>
+            <p>چون کوروش یه نفس بیشتر نداره!<br>آیا واقعاً حرف راستی میزنی؟</p>
             <div class="btn-group">
                 <button class="btn btn-secondary" onclick="goToStep3()">آره، راست میگم!</button>
                 <button class="btn btn-outline" disabled>نه دروغ گفتم</button>
             </div>
         </div>
 
+        <!-- STEP 3 -->
         <div id="step3" class="glass-card hidden fade-transition">
             <span class="emoji-big">🥰</span>
             <h2>آفرین، قبول شدی!</h2>
             <p>خب حالا که اینطوریه...<br>دکمه پایین رو بزن تا میزان اهمیت و علاقه‌ی کوروش به خودت رو ببینی!</p>
-            <button class="btn continue-btn" onclick="goToStep4()">به فرمان کوری ادامههه ➡️</button>
+            <button class="btn continue-btn" onclick="goToStep4()">ادامه رو بزن ➡️</button>
         </div>
 
+        <!-- STEP 4 - روزشمار -->
         <div id="step4" class="glass-card hidden fade-transition">
             <div class="countdown-header">
                 <span>❤️</span>
@@ -621,6 +642,7 @@
             </div>
 
             <div class="row-split">
+                <!-- باکس اطلاعات -->
                 <div class="info-box" id="infoBox">
                     <h4>✨ ما دو تا</h4>
                     <div id="infoList"></div>
@@ -646,6 +668,7 @@
                     </div>
                 </div>
 
+                <!-- باکس تایمر -->
                 <div class="timer-box" id="timerBox">
                     <div class="time-unit"><span id="days">00</span><small>روز</small></div>
                     <div class="time-unit"><span id="hours">00</span><small>ساعت</small></div>
@@ -674,7 +697,7 @@
                 <strong>منو دوست داری؟ (حتما جواب بدی!)</strong>
             </div>
 
-            <div class="btn-group" style="margin-top: 8px;">
+            <div class="btn-group" style="margin-top: 6px;">
                 <button class="btn btn-primary" onclick="alert('به به! منم تا ابد عاشقتم ❤️')">بله، دوست دارم!</button>
                 <a href="gallery.html" class="btn btn-secondary">🖼️ گالری</a>
             </div>
@@ -718,9 +741,7 @@
 
         let infoData = loadInfo();
 
-        // ===== تابع مرتب‌سازی بر اساس تاریخ =====
         function sortInfoData(data) {
-            // اولویت: تاریخ‌هایی که عدد (روز) دارند اول
             return data.sort((a, b) => {
                 const numA = parseInt(a.value) || 0;
                 const numB = parseInt(b.value) || 0;
@@ -730,15 +751,13 @@
 
         function renderInfo() {
             const list = document.getElementById('infoList');
-            // مرتب‌سازی داده‌ها
             const sortedData = sortInfoData([...infoData]);
             
             if (sortedData.length === 0) {
-                list.innerHTML = '<div style="text-align:center; color:#7a5a68; padding:20px 0; font-size:0.9rem;">هنوز اطلاعاتی ثبت نشده!<br>اولین اطلاعات رو اضافه کن ❤️</div>';
+                list.innerHTML = '<div style="text-align:center; color:#7a5a68; padding:15px 0; font-size:0.8rem;">هنوز اطلاعاتی ثبت نشده!<br>اولین اطلاعات رو اضافه کن ❤️</div>';
                 return;
             }
             list.innerHTML = sortedData.map((item, index) => {
-                // پیدا کردن ایندکس اصلی برای حذف
                 const originalIndex = infoData.indexOf(item);
                 return `
                     <div class="info-item">
@@ -841,8 +860,8 @@
                 } else {
                     clearInterval(timer);
                     document.getElementById("timerBox").innerHTML = `
-                        <div style="grid-column:1/-1; text-align:center; padding:10px; color:#2d1b26;">
-                            <span style="font-size:1.8rem;">⏳</span><br>
+                        <div style="grid-column:1/-1; text-align:center; padding:8px; color:#2d1b26; font-size:0.9rem;">
+                            <span style="font-size:1.5rem;">⏳</span><br>
                             <strong>منتظر رسیدن روز موعود...</strong>
                         </div>
                     `;
