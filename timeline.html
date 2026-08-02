@@ -133,14 +133,15 @@
             font-size: clamp(0.9rem, 2.5vw, 1.05rem);
         }
 
-        /* ===== لیست تایم‌لاین ===== */
+        /* ===== لیست تایم‌لاین - بدون اسکرول افقی ===== */
         .timeline-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
             margin-top: 16px;
             max-height: 400px;
-            overflow-y: auto;
+            overflow-y: auto;    /* فقط اسکرول عمودی */
+            overflow-x: hidden;  /* غیرفعال کردن اسکرول افقی */
             padding-right: 4px;
         }
         .timeline-list::-webkit-scrollbar {
@@ -166,9 +167,10 @@
             gap: 14px;
             transition: all 0.3s ease;
             position: relative;
+            /* جلوگیری از سرریز شدن متن */
+            overflow: hidden;
         }
         .timeline-item:hover {
-            transform: translateX(-5px);
             background: rgba(255, 255, 255, 0.55);
             box-shadow: 0 4px 15px rgba(255, 107, 157, 0.1);
         }
@@ -182,6 +184,7 @@
 
         .timeline-content {
             flex: 1;
+            min-width: 0; /* برای جلوگیری از سرریز */
         }
         .timeline-content .date {
             font-size: 0.75rem;
@@ -194,14 +197,18 @@
             font-size: clamp(1rem, 2.5vw, 1.1rem);
             font-weight: 700;
             color: #2d1b26;
+            word-wrap: break-word;    /* شکستن کلمات بلند */
+            overflow-wrap: break-word;
         }
         .timeline-content .desc {
             font-size: clamp(0.85rem, 2vw, 0.95rem);
             color: #4f3a44;
             margin-top: 2px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
-        /* دکمه حذف */
+        /* ===== دکمه حذف ===== */
         .delete-btn {
             background: rgba(255, 0, 0, 0.1);
             border: none;
@@ -277,8 +284,7 @@
             box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
         }
 
-        /* ===== دکمه برگشت (حذف شد) ===== */
-        /* فقط دکمه برگشت به صفحه اصلی مونده */
+        /* ===== دکمه برگشت ===== */
         .back-btn {
             display: inline-flex;
             align-items: center;
@@ -333,6 +339,12 @@
             .add-form input, .add-form select { min-width: 100%; }
             .btn-add { width: 100%; }
             .back-btn { padding: 10px 22px; font-size: 0.95rem; width: 100%; justify-content: center; }
+        }
+
+        @media (max-width: 360px) {
+            .glass-card { padding: 16px 12px; border-radius: 28px; }
+            .timeline-item { padding: 10px 12px; }
+            .timeline-icon { font-size: 1.3rem; width: 32px; }
         }
     </style>
 </head>
@@ -399,7 +411,7 @@
                 </div>
             </div>
 
-            <!-- ===== فقط دکمه برگشت به صفحه اصلی ===== -->
+            <!-- ===== دکمه برگشت به صفحه اصلی ===== -->
             <div class="btn-group">
                 <a href="index.html" class="back-btn">⬅️ برگشت به صفحه اصلی</a>
             </div>
