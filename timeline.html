@@ -277,14 +277,8 @@
             box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
         }
 
-        /* ===== دکمه برگشت ===== */
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 16px;
-        }
+        /* ===== دکمه برگشت (حذف شد) ===== */
+        /* فقط دکمه برگشت به صفحه اصلی مونده */
         .back-btn {
             display: inline-flex;
             align-items: center;
@@ -301,10 +295,19 @@
             box-shadow: 0 6px 18px rgba(192, 132, 252, 0.25);
             transition: all 0.3s ease;
             text-decoration: none;
+            margin-top: 16px;
         }
         .back-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 28px rgba(192, 132, 252, 0.4);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 16px;
         }
 
         .empty-msg {
@@ -329,7 +332,7 @@
             .add-form .form-row { flex-direction: column; }
             .add-form input, .add-form select { min-width: 100%; }
             .btn-add { width: 100%; }
-            .back-btn { padding: 10px 22px; font-size: 0.95rem; }
+            .back-btn { padding: 10px 22px; font-size: 0.95rem; width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -396,7 +399,7 @@
                 </div>
             </div>
 
-            <!-- دکمه برگشت -->
+            <!-- ===== فقط دکمه برگشت به صفحه اصلی ===== -->
             <div class="btn-group">
                 <a href="index.html" class="back-btn">⬅️ برگشت به صفحه اصلی</a>
             </div>
@@ -405,7 +408,7 @@
     </div>
 
     <script>
-        // ===== داده‌های پیش‌فرض (میتونی هرچی دوست داری تغییر بدی) =====
+        // ===== داده‌های پیش‌فرض =====
         let timelineData = [
             {
                 id: 1,
@@ -525,7 +528,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             renderTimeline();
 
-            // اضافه کردن با Enter
             const inputs = ['newDate', 'newTitle', 'newDesc'];
             inputs.forEach(id => {
                 document.getElementById(id).addEventListener('keypress', function(e) {
