@@ -29,15 +29,14 @@
             overflow: hidden;
         }
 
-        /* ===== استیکرها ===== */
         .sticker {
             position: fixed;
-            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             pointer-events: none;
             z-index: 2;
             animation: floatSticker 8s ease-in-out infinite;
             filter: drop-shadow(0 4px 12px rgba(255, 107, 157, 0.3));
-            opacity: 0.5;
+            opacity: 0.6;
         }
         .sticker:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; font-size: clamp(2.5rem, 7vw, 5rem); }
         .sticker:nth-child(2) { top: 8%; right: 8%; animation-delay: 1.2s; }
@@ -52,7 +51,6 @@
             100% { transform: translateY(0px) rotate(0deg) scale(1); }
         }
 
-        /* ===== BUBBLES ===== */
         .bubbles {
             position: fixed;
             top: 0;
@@ -81,7 +79,6 @@
             100% { transform: translateY(-110vh) scale(1.3); opacity: 0; }
         }
 
-        /* ===== APP ===== */
         .app-container {
             position: relative;
             z-index: 10;
@@ -137,7 +134,6 @@
             font-size: clamp(0.85rem, 2.2vw, 1rem);
         }
 
-        /* ===== گالری با طراحی قلب ===== */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -161,7 +157,6 @@
             border-radius: 10px;
         }
 
-        /* آیتم گالری با شکل قلب */
         .gallery-item {
             position: relative;
             aspect-ratio: 1;
@@ -175,8 +170,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: #d94a7a;
             min-height: 80px;
         }
         .gallery-item:hover {
@@ -190,40 +183,26 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: all 0.3s ease;
         }
-        .gallery-item .placeholder-text {
-            position: absolute;
-            font-size: 2.5rem;
-            opacity: 0.5;
-            text-align: center;
-            line-height: 1.3;
-            color: #7a5a68;
-        }
-        .gallery-item .upload-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.3);
+
+        .gallery-item .empty-box {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: all 0.3s ease;
-            border-radius: 17px;
-        }
-        .gallery-item:hover .upload-overlay {
-            opacity: 1;
-        }
-        .gallery-item .upload-overlay span {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 6px 14px;
-            border-radius: 30px;
+            color: #7a5a68;
             font-size: 0.8rem;
-            font-weight: 700;
-            color: #d94a7a;
-            backdrop-filter: blur(4px);
+            opacity: 0.5;
+            text-align: center;
+            padding: 10px;
         }
-        .gallery-item .delete-img-btn {
+        .gallery-item .empty-box span {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .delete-btn {
             position: absolute;
             top: 6px;
             right: 6px;
@@ -241,25 +220,35 @@
             z-index: 10;
             transition: all 0.3s ease;
         }
-        .gallery-item:hover .delete-img-btn {
+        .gallery-item:hover .delete-btn {
             display: flex;
         }
-        .gallery-item .delete-img-btn:hover {
+        .delete-btn:hover {
             transform: scale(1.2);
             background: red;
         }
 
-        /* المان قلب برای تزیین */
-        .heart-shape {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
+        .upload-btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 60px;
+            font-family: inherit;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(255, 107, 157, 0.25);
+            transition: all 0.3s ease;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
+            gap: 8px;
+        }
+        .upload-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(255, 107, 157, 0.4);
         }
 
-        /* ===== دکمه‌های ناوبری ===== */
         .nav-buttons {
             display: flex;
             gap: 12px;
@@ -288,14 +277,6 @@
             justify-content: center;
             min-width: 100px;
         }
-        .nav-btn-primary {
-            background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
-            box-shadow: 0 6px 18px rgba(255, 107, 157, 0.25);
-        }
-        .nav-btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 28px rgba(255, 107, 157, 0.4);
-        }
         .nav-btn-secondary {
             background: linear-gradient(135deg, #c084fc, #a855f7);
             box-shadow: 0 6px 18px rgba(192, 132, 252, 0.25);
@@ -305,7 +286,10 @@
             box-shadow: 0 10px 28px rgba(192, 132, 252, 0.4);
         }
 
-        /* ===== Modal برای بزرگنمایی ===== */
+        #fileInput {
+            display: none;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -353,20 +337,22 @@
             background: rgba(255, 255, 255, 0.3);
             transform: rotate(90deg);
         }
-        .modal-counter {
-            position: fixed;
-            bottom: 30px;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            font-family: 'Vazirmatn', sans-serif;
+
+        .empty-gallery {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: #7a5a68;
+        }
+        .empty-gallery span {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 16px;
+        }
+        .empty-gallery p {
+            font-size: 1.1rem;
         }
 
-        /* ===== دکمه آپلود مخفی ===== */
-        #fileInput {
-            display: none;
-        }
-
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
             body { padding: 10px; }
             .app-container { min-height: 100vh; padding: 8px 0; }
@@ -381,9 +367,6 @@
             .gallery-item {
                 border-radius: 14px;
                 min-height: 60px;
-            }
-            .gallery-item .placeholder-text {
-                font-size: 1.8rem;
             }
             .nav-btn {
                 padding: 8px 16px;
@@ -406,25 +389,26 @@
                 top: 12px;
                 left: 12px;
             }
+            .upload-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
         }
 
         @media (max-width: 360px) {
             .glass-card { padding: 12px 10px; border-radius: 24px; }
             .gallery-grid { gap: 6px; }
             .gallery-item { min-height: 50px; border-radius: 12px; }
-            .gallery-item .placeholder-text { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== استیکرها ===== -->
     <div class="sticker">🌸</div>
     <div class="sticker">💖</div>
     <div class="sticker">🌺</div>
     <div class="sticker">💝</div>
 
-    <!-- ===== BUBBLES ===== -->
     <div class="bubbles">
         <div class="bubble"></div>
         <div class="bubble"></div>
@@ -433,52 +417,38 @@
         <div class="bubble"></div>
     </div>
 
-    <!-- ===== APP ===== -->
     <div class="app-container">
         <div class="glass-card">
 
-            <!-- هدر -->
             <div class="header">
                 <span class="emoji-big">🖼️</span>
                 <h1>گالری عشق ما ❤️</h1>
                 <p>هر عکس، یه خاطره‌ست...</p>
             </div>
 
-            <!-- ===== گالری ===== -->
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- آیتم‌ها توسط جاوااسکریپت ساخته میشن -->
-            </div>
+            <div class="gallery-grid" id="galleryGrid"></div>
 
-            <!-- ===== دکمه‌های ناوبری ===== -->
             <div class="nav-buttons">
-                <button class="nav-btn nav-btn-primary" onclick="document.getElementById('fileInput').click()">
-                    📸 اضافه کن
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    📸 اضافه کردن عکس
                 </button>
                 <a href="index.html" class="nav-btn nav-btn-secondary">🏠 صفحه اصلی</a>
                 <a href="timeline.html" class="nav-btn nav-btn-secondary">📖 خاطرات</a>
             </div>
 
-            <!-- ===== اینپوت مخفی برای آپلود ===== -->
             <input type="file" id="fileInput" accept="image/*" multiple>
 
         </div>
     </div>
 
-    <!-- ===== Modal برای بزرگنمایی ===== -->
     <div class="modal" id="imageModal" onclick="closeModal()">
         <button class="modal-close" onclick="closeModal()">✕</button>
         <img id="modalImage" src="" alt="عکس">
-        <div class="modal-counter" id="modalCounter"></div>
     </div>
 
     <script>
-        // ============================================
-        // گالری با ذخیره‌سازی در localStorage
-        // ============================================
-        
         const GALLERY_KEY = 'galleryImages';
 
-        // ===== بارگذاری تصاویر از localStorage =====
         function loadImages() {
             const saved = localStorage.getItem(GALLERY_KEY);
             if (saved) {
@@ -491,80 +461,44 @@
             return [];
         }
 
-        // ===== ذخیره تصاویر در localStorage =====
         function saveImages(images) {
             localStorage.setItem(GALLERY_KEY, JSON.stringify(images));
         }
 
-        // ===== تصاویر پیش‌فرض (با placeholder) =====
         let galleryImages = loadImages();
 
-        // اگر گالری خالی بود، چندتا اسلات خالی اضافه کن
-        if (galleryImages.length === 0) {
-            // ۹ جای خالی برای شروع
-            galleryImages = Array(9).fill(null);
-            saveImages(galleryImages);
-        }
-
-        // ===== رندر گالری =====
         function renderGallery() {
             const grid = document.getElementById('galleryGrid');
             
+            if (galleryImages.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-gallery">
+                        <span>📭</span>
+                        <p>هنوز عکسی اضافه نشده!</p>
+                        <p style="font-size:0.9rem; margin-top:8px;">روی دکمه "اضافه کردن عکس" کلیک کن ❤️</p>
+                    </div>
+                `;
+                return;
+            }
+
             grid.innerHTML = galleryImages.map((img, index) => `
                 <div class="gallery-item" onclick="openImage(${index})">
-                    ${img ? `
-                        <img src="${img}" alt="عکس ${index + 1}">
-                        <button class="delete-img-btn" onclick="event.stopPropagation(); deleteImage(${index})">✕</button>
-                    ` : `
-                        <div class="placeholder-text">
-                            📷<br>
-                            <span style="font-size:0.6rem; color:#a18cd1;">${index + 1}</span>
-                        </div>
-                        <div class="upload-overlay" onclick="event.stopPropagation(); uploadImage(${index})">
-                            <span>📸 آپلود</span>
-                        </div>
-                    `}
+                    <img src="${img}" alt="عکس ${index + 1}">
+                    <button class="delete-btn" onclick="event.stopPropagation(); deleteImage(${index})">✕</button>
                 </div>
             `).join('');
         }
 
-        // ===== آپلود تصویر =====
-        function uploadImage(index) {
-            const input = document.getElementById('fileInput');
-            input.click();
-            // ذخیره ایندکس برای استفاده بعد از آپلود
-            input.dataset.targetIndex = index;
-        }
-
-        // ===== اضافه کردن تصویر جدید (از طریق دکمه) =====
         document.getElementById('fileInput').addEventListener('change', function(e) {
             const files = e.target.files;
             if (!files.length) return;
 
-            const targetIndex = this.dataset.targetIndex;
-            
-            Array.from(files).forEach((file, i) => {
+            Array.from(files).forEach(file => {
                 if (!file.type.startsWith('image/')) return;
                 
                 const reader = new FileReader();
                 reader.onload = function(event) {
-                    const imageData = event.target.result;
-                    
-                    if (targetIndex !== undefined && targetIndex !== '') {
-                        // جایگزینی در اسلات خاص
-                        galleryImages[parseInt(targetIndex)] = imageData;
-                        delete this.dataset.targetIndex;
-                    } else {
-                        // پیدا کردن اولین اسلات خالی
-                        const emptyIndex = galleryImages.indexOf(null);
-                        if (emptyIndex !== -1) {
-                            galleryImages[emptyIndex] = imageData;
-                        } else {
-                            // اگر همه اسلات‌ها پر بود، به انتها اضافه کن
-                            galleryImages.push(imageData);
-                        }
-                    }
-                    
+                    galleryImages.push(event.target.result);
                     saveImages(galleryImages);
                     renderGallery();
                 };
@@ -574,34 +508,21 @@
             this.value = '';
         });
 
-        // ===== حذف تصویر =====
         function deleteImage(index) {
             if (confirm('آیا مطمئنی میخوای این عکس رو حذف کنی؟ 😢')) {
-                galleryImages[index] = null;
+                galleryImages.splice(index, 1);
                 saveImages(galleryImages);
                 renderGallery();
             }
         }
 
-        // ===== باز کردن تصویر در Modal =====
-        let currentImageIndex = 0;
-
         function openImage(index) {
             const img = galleryImages[index];
             if (!img) return;
             
-            currentImageIndex = index;
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
-            const counter = document.getElementById('modalCounter');
-            
             modalImg.src = img;
-            
-            // شمارنده
-            const total = galleryImages.filter(i => i !== null).length;
-            const current = galleryImages.slice(0, index + 1).filter(i => i !== null).length;
-            counter.textContent = `${current} از ${total}`;
-            
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -611,31 +532,14 @@
             document.body.style.overflow = '';
         }
 
-        // ===== کیبورد برای ناوبری در Modal =====
-        document.addEventListener('keydown', function(e) {
-            if (!document.getElementById('imageModal').classList.contains('active')) return;
-            
-            if (e.key === 'Escape') {
-                closeModal();
-            } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                // عکس بعدی
-                let next = currentImageIndex + 1;
-                while (next < galleryImages.length && galleryImages[next] === null) next++;
-                if (next < galleryImages.length) openImage(next);
-            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                // عکس قبلی
-                let prev = currentImageIndex - 1;
-                while (prev >= 0 && galleryImages[prev] === null) prev--;
-                if (prev >= 0) openImage(prev);
-            }
-        });
-
-        // ===== کلیک روی پس‌زمینه Modal =====
         document.getElementById('imageModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
 
-        // ===== تنظیمات اولیه =====
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             renderGallery();
         });
