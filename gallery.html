@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>گالری عشق ما ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            min-height: 100vh;
+            min-height: 100dvh;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(145deg, #ffd6e0 0%, #fbc2eb 50%, #a18cd1 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ===== استیکرها ===== */
+        .sticker {
+            position: fixed;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            pointer-events: none;
+            z-index: 2;
+            animation: floatSticker 8s ease-in-out infinite;
+            filter: drop-shadow(0 4px 12px rgba(255, 107, 157, 0.3));
+            opacity: 0.5;
+        }
+        .sticker:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; font-size: clamp(2.5rem, 7vw, 5rem); }
+        .sticker:nth-child(2) { top: 8%; right: 8%; animation-delay: 1.2s; }
+        .sticker:nth-child(3) { bottom: 12%; left: 6%; animation-delay: 2.5s; }
+        .sticker:nth-child(4) { bottom: 8%; right: 6%; animation-delay: 0.8s; font-size: clamp(3rem, 8vw, 5.5rem); }
+
+        @keyframes floatSticker {
+            0% { transform: translateY(0px) rotate(0deg) scale(1); }
+            25% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
+            50% { transform: translateY(5px) rotate(-3deg) scale(0.95); }
+            75% { transform: translateY(-10px) rotate(4deg) scale(1.02); }
+            100% { transform: translateY(0px) rotate(0deg) scale(1); }
+        }
+
+        /* ===== BUBBLES ===== */
+        .bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .bubble {
+            position: absolute;
+            bottom: -60px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            animation: rise linear infinite;
+        }
+        .bubble:nth-child(1) { width: 80px; height: 80px; left: 5%; animation-duration: 16s; }
+        .bubble:nth-child(2) { width: 40px; height: 40px; left: 25%; animation-duration: 12s; animation-delay: 2s; }
+        .bubble:nth-child(3) { width: 110px; height: 110px; left: 45%; animation-duration: 22s; animation-delay: 4s; }
+        .bubble:nth-child(4) { width: 60px; height: 60px; left: 70%; animation-duration: 14s; animation-delay: 1s; }
+        .bubble:nth-child(5) { width: 90px; height: 90px; left: 88%; animation-duration: 19s; animation-delay: 3s; }
+        @keyframes rise {
+            0% { transform: translateY(0) scale(0.6); opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) scale(1.3); opacity: 0; }
+        }
+
+        /* ===== APP ===== */
+        .app-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 16px 0;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 44px;
+            padding: 28px 22px;
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-height: 96vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 16px;
+            flex-shrink: 0;
+        }
+        .header .emoji-big {
+            font-size: clamp(3rem, 9vw, 4rem);
+            display: block;
+            margin-bottom: 4px;
+            animation: gentle-pulse 2.4s infinite;
+        }
+        @keyframes gentle-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+        .header h1 {
+            color: #2d1b26;
+            font-size: clamp(1.3rem, 4.5vw, 2rem);
+            font-weight: 900;
+            margin-bottom: 2px;
+        }
+        .header p {
+            color: #4f3a44;
+            font-size: clamp(0.85rem, 2.2vw, 1rem);
+        }
+
+        /* ===== گالری با طراحی قلب ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            flex: 1 1 auto;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 4px 2px;
+            min-height: 0;
+            align-content: start;
+        }
+        .gallery-grid::-webkit-scrollbar {
+            width: 4px;
+        }
+        .gallery-grid::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+        .gallery-grid::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ff6b9d, #c084fc);
+            border-radius: 10px;
+        }
+
+        /* آیتم گالری با شکل قلب */
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #d94a7a;
+            min-height: 80px;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+            border-color: #ff6b9d;
+            box-shadow: 0 8px 30px rgba(255, 107, 157, 0.3);
+            z-index: 5;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        .gallery-item .placeholder-text {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.5;
+            text-align: center;
+            line-height: 1.3;
+            color: #7a5a68;
+        }
+        .gallery-item .upload-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            border-radius: 17px;
+        }
+        .gallery-item:hover .upload-overlay {
+            opacity: 1;
+        }
+        .gallery-item .upload-overlay span {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #d94a7a;
+            backdrop-filter: blur(4px);
+        }
+        .gallery-item .delete-img-btn {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: rgba(255, 0, 0, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 0.8rem;
+            color: #fff;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover .delete-img-btn {
+            display: flex;
+        }
+        .gallery-item .delete-img-btn:hover {
+            transform: scale(1.2);
+            background: red;
+        }
+
+        /* المان قلب برای تزیین */
+        .heart-shape {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== دکمه‌های ناوبری ===== */
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 14px;
+            flex-shrink: 0;
+            padding-top: 14px;
+            border-top: 2px dashed rgba(255, 107, 157, 0.3);
+        }
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 60px;
+            font-family: inherit;
+            font-size: clamp(0.9rem, 2.2vw, 1rem);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            flex: 1;
+            justify-content: center;
+            min-width: 100px;
+        }
+        .nav-btn-primary {
+            background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
+            box-shadow: 0 6px 18px rgba(255, 107, 157, 0.25);
+        }
+        .nav-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(255, 107, 157, 0.4);
+        }
+        .nav-btn-secondary {
+            background: linear-gradient(135deg, #c084fc, #a855f7);
+            box-shadow: 0 6px 18px rgba(192, 132, 252, 0.25);
+        }
+        .nav-btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(192, 132, 252, 0.4);
+        }
+
+        /* ===== Modal برای بزرگنمایی ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+        }
+        .modal-close {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.8rem;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        .modal-counter {
+            position: fixed;
+            bottom: 30px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        /* ===== دکمه آپلود مخفی ===== */
+        #fileInput {
+            display: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            body { padding: 10px; }
+            .app-container { min-height: 100vh; padding: 8px 0; }
+            .glass-card { 
+                padding: 18px 14px; 
+                border-radius: 30px;
+                max-height: 98vh;
+            }
+            .gallery-grid {
+                gap: 8px;
+            }
+            .gallery-item {
+                border-radius: 14px;
+                min-height: 60px;
+            }
+            .gallery-item .placeholder-text {
+                font-size: 1.8rem;
+            }
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+                min-width: 70px;
+            }
+            .nav-buttons {
+                gap: 8px;
+                margin-top: 10px;
+                padding-top: 10px;
+            }
+            .modal img {
+                max-width: 95%;
+                max-height: 70vh;
+            }
+            .modal-close {
+                width: 40px;
+                height: 40px;
+                font-size: 1.4rem;
+                top: 12px;
+                left: 12px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .glass-card { padding: 12px 10px; border-radius: 24px; }
+            .gallery-grid { gap: 6px; }
+            .gallery-item { min-height: 50px; border-radius: 12px; }
+            .gallery-item .placeholder-text { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== استیکرها ===== -->
+    <div class="sticker">🌸</div>
+    <div class="sticker">💖</div>
+    <div class="sticker">🌺</div>
+    <div class="sticker">💝</div>
+
+    <!-- ===== BUBBLES ===== -->
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <!-- ===== APP ===== -->
+    <div class="app-container">
+        <div class="glass-card">
+
+            <!-- هدر -->
+            <div class="header">
+                <span class="emoji-big">🖼️</span>
+                <h1>گالری عشق ما ❤️</h1>
+                <p>هر عکس، یه خاطره‌ست...</p>
+            </div>
+
+            <!-- ===== گالری ===== -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- آیتم‌ها توسط جاوااسکریپت ساخته میشن -->
+            </div>
+
+            <!-- ===== دکمه‌های ناوبری ===== -->
+            <div class="nav-buttons">
+                <button class="nav-btn nav-btn-primary" onclick="document.getElementById('fileInput').click()">
+                    📸 اضافه کن
+                </button>
+                <a href="index.html" class="nav-btn nav-btn-secondary">🏠 صفحه اصلی</a>
+                <a href="timeline.html" class="nav-btn nav-btn-secondary">📖 خاطرات</a>
+            </div>
+
+            <!-- ===== اینپوت مخفی برای آپلود ===== -->
+            <input type="file" id="fileInput" accept="image/*" multiple>
+
+        </div>
+    </div>
+
+    <!-- ===== Modal برای بزرگنمایی ===== -->
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <img id="modalImage" src="" alt="عکس">
+        <div class="modal-counter" id="modalCounter"></div>
+    </div>
+
+    <script>
+        // ============================================
+        // گالری با ذخیره‌سازی در localStorage
+        // ============================================
+        
+        const GALLERY_KEY = 'galleryImages';
+
+        // ===== بارگذاری تصاویر از localStorage =====
+        function loadImages() {
+            const saved = localStorage.getItem(GALLERY_KEY);
+            if (saved) {
+                try {
+                    return JSON.parse(saved);
+                } catch (e) {
+                    return [];
+                }
+            }
+            return [];
+        }
+
+        // ===== ذخیره تصاویر در localStorage =====
+        function saveImages(images) {
+            localStorage.setItem(GALLERY_KEY, JSON.stringify(images));
+        }
+
+        // ===== تصاویر پیش‌فرض (با placeholder) =====
+        let galleryImages = loadImages();
+
+        // اگر گالری خالی بود، چندتا اسلات خالی اضافه کن
+        if (galleryImages.length === 0) {
+            // ۹ جای خالی برای شروع
+            galleryImages = Array(9).fill(null);
+            saveImages(galleryImages);
+        }
+
+        // ===== رندر گالری =====
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            
+            grid.innerHTML = galleryImages.map((img, index) => `
+                <div class="gallery-item" onclick="openImage(${index})">
+                    ${img ? `
+                        <img src="${img}" alt="عکس ${index + 1}">
+                        <button class="delete-img-btn" onclick="event.stopPropagation(); deleteImage(${index})">✕</button>
+                    ` : `
+                        <div class="placeholder-text">
+                            📷<br>
+                            <span style="font-size:0.6rem; color:#a18cd1;">${index + 1}</span>
+                        </div>
+                        <div class="upload-overlay" onclick="event.stopPropagation(); uploadImage(${index})">
+                            <span>📸 آپلود</span>
+                        </div>
+                    `}
+                </div>
+            `).join('');
+        }
+
+        // ===== آپلود تصویر =====
+        function uploadImage(index) {
+            const input = document.getElementById('fileInput');
+            input.click();
+            // ذخیره ایندکس برای استفاده بعد از آپلود
+            input.dataset.targetIndex = index;
+        }
+
+        // ===== اضافه کردن تصویر جدید (از طریق دکمه) =====
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (!files.length) return;
+
+            const targetIndex = this.dataset.targetIndex;
+            
+            Array.from(files).forEach((file, i) => {
+                if (!file.type.startsWith('image/')) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imageData = event.target.result;
+                    
+                    if (targetIndex !== undefined && targetIndex !== '') {
+                        // جایگزینی در اسلات خاص
+                        galleryImages[parseInt(targetIndex)] = imageData;
+                        delete this.dataset.targetIndex;
+                    } else {
+                        // پیدا کردن اولین اسلات خالی
+                        const emptyIndex = galleryImages.indexOf(null);
+                        if (emptyIndex !== -1) {
+                            galleryImages[emptyIndex] = imageData;
+                        } else {
+                            // اگر همه اسلات‌ها پر بود، به انتها اضافه کن
+                            galleryImages.push(imageData);
+                        }
+                    }
+                    
+                    saveImages(galleryImages);
+                    renderGallery();
+                };
+                reader.readAsDataURL(file);
+            });
+            
+            this.value = '';
+        });
+
+        // ===== حذف تصویر =====
+        function deleteImage(index) {
+            if (confirm('آیا مطمئنی میخوای این عکس رو حذف کنی؟ 😢')) {
+                galleryImages[index] = null;
+                saveImages(galleryImages);
+                renderGallery();
+            }
+        }
+
+        // ===== باز کردن تصویر در Modal =====
+        let currentImageIndex = 0;
+
+        function openImage(index) {
+            const img = galleryImages[index];
+            if (!img) return;
+            
+            currentImageIndex = index;
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const counter = document.getElementById('modalCounter');
+            
+            modalImg.src = img;
+            
+            // شمارنده
+            const total = galleryImages.filter(i => i !== null).length;
+            const current = galleryImages.slice(0, index + 1).filter(i => i !== null).length;
+            counter.textContent = `${current} از ${total}`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ===== کیبورد برای ناوبری در Modal =====
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('imageModal').classList.contains('active')) return;
+            
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                // عکس بعدی
+                let next = currentImageIndex + 1;
+                while (next < galleryImages.length && galleryImages[next] === null) next++;
+                if (next < galleryImages.length) openImage(next);
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                // عکس قبلی
+                let prev = currentImageIndex - 1;
+                while (prev >= 0 && galleryImages[prev] === null) prev--;
+                if (prev >= 0) openImage(prev);
+            }
+        });
+
+        // ===== کلیک روی پس‌زمینه Modal =====
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // ===== تنظیمات اولیه =====
+        document.addEventListener('DOMContentLoaded', function() {
+            renderGallery();
+        });
+    </script>
+
+</body>
+</html>
