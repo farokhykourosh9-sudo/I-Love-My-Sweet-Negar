@@ -23,10 +23,12 @@
             background: linear-gradient(145deg, #ffd6e0 0%, #fbc2eb 50%, #a18cd1 100%);
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 16px;
             position: relative;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .sticker {
@@ -93,8 +95,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: auto;
-            padding: 10px 0;
+            min-height: 100vh;
+            padding: 16px 0;
         }
 
         .glass-card {
@@ -239,6 +241,20 @@
             flex-direction: column;
             min-height: 140px;
             order: 1;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .info-box::-webkit-scrollbar {
+            width: 4px;
+        }
+        .info-box::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+        .info-box::-webkit-scrollbar-thumb {
+            background: #ff6b9d;
+            border-radius: 10px;
         }
 
         .info-box h4 {
@@ -249,6 +265,12 @@
             border-bottom: 2px dashed rgba(255, 107, 157, 0.3);
             padding-bottom: 6px;
             flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(4px);
+            z-index: 5;
+            border-radius: 4px;
         }
 
         #infoList {
@@ -258,9 +280,11 @@
         .info-item {
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
+            align-items: center;
+            padding: 8px 4px;
             font-size: clamp(0.8rem, 2vw, 0.95rem);
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            gap: 8px;
         }
         .info-item:last-child {
             border-bottom: none;
@@ -271,10 +295,31 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            flex: 1;
         }
         .info-value {
             color: #2d1b26;
             font-weight: 700;
+            flex-shrink: 0;
+        }
+        .info-delete-btn {
+            background: rgba(255, 0, 0, 0.1);
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            color: #e74c3c;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .info-delete-btn:hover {
+            background: rgba(255, 0, 0, 0.2);
+            transform: scale(1.1);
         }
 
         .add-info-form {
@@ -282,6 +327,12 @@
             padding-top: 10px;
             border-top: 2px dashed rgba(255,107,157,0.2);
             flex-shrink: 0;
+            position: sticky;
+            bottom: 0;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(4px);
+            border-radius: 12px;
+            padding: 8px 4px;
         }
         .add-info-form .form-row {
             display: flex;
@@ -439,13 +490,12 @@
         @media (max-width: 480px) {
             body { padding: 10px; }
             .app-container { 
-                min-height: auto;
+                min-height: 100vh;
                 padding: 10px 0;
             }
             .glass-card { 
                 padding: 20px 16px; 
                 border-radius: 32px;
-                max-height: none;
             }
             .row-split { 
                 flex-direction: column; 
@@ -456,7 +506,7 @@
                 order: 0 !important; 
                 border-radius: 20px; 
                 padding: 12px 10px;
-                max-height: none;
+                max-height: 300px;
             }
             .timer-box { 
                 grid-template-columns: 1fr 1fr; 
@@ -466,7 +516,7 @@
             .time-unit span { font-size: clamp(1.6rem, 5vw, 2.2rem); }
             .btn { padding: 10px 18px; min-width: 80px; font-size: clamp(0.85rem, 2.2vw, 1rem); }
             .continue-btn { padding: 12px 28px; font-size: clamp(1rem, 2.8vw, 1.2rem); max-width: 200px; }
-            .info-item { font-size: clamp(0.75rem, 1.8vw, 0.85rem); padding: 4px 0; }
+            .info-item { font-size: clamp(0.75rem, 1.8vw, 0.85rem); padding: 6px 2px; }
             .info-box h4 { font-size: clamp(0.8rem, 2vw, 0.9rem); margin-bottom: 6px; }
             .sticker { opacity: 0.5 !important; }
             .add-info-form .form-row { flex-direction: column; }
@@ -475,6 +525,7 @@
             .date-link-box .date-card { padding: 12px 14px; }
             .date-link-box .date-icon { font-size: 1.6rem; }
             .date-link-box .date-value { font-size: 1rem; }
+            .info-delete-btn { width: 20px; height: 20px; font-size: 0.6rem; }
         }
 
         @media (max-width: 360px) {
@@ -482,16 +533,15 @@
             .time-unit span { font-size: clamp(1.3rem, 4.5vw, 1.8rem); }
             .btn { padding: 8px 14px; min-width: 70px; font-size: clamp(0.8rem, 2vw, 0.9rem); }
             .btn-group { gap: 8px; }
-            .app-container { min-height: auto; }
-            .info-box { max-height: none; }
+            .info-box { max-height: 250px; }
         }
 
         @media (min-width: 768px) {
-            .app-container { max-width: 550px; min-height: auto; }
+            .app-container { max-width: 550px; }
             .glass-card { padding: 36px 30px; border-radius: 50px; }
             .row-split { gap: 18px; }
             .time-unit span { font-size: 3.2rem; }
-            .info-box { max-height: none; }
+            .info-box { max-height: 450px; }
         }
     </style>
 </head>
@@ -516,37 +566,33 @@
 
     <div class="app-container" id="app">
 
-        <!-- STEP 1 -->
         <div id="step1" class="glass-card fade-transition">
-            <span class="emoji-big">🥺🫠</span>
-            <h1>سلام خانوممم!</h1>
-            <p>یه سوال دارم ازتتت...<br>تو <strong>نفس کوروشی</strong>؟</p>
+            <span class="emoji-big">🤔</span>
+            <h1>سلام عزیز دلم!</h1>
+            <p>یک سوال خیلی ساده دارم...<br>تو <strong>نفس کوروشی</strong>؟</p>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="goToStep2()">بله، نَفَسِتم!</button>
                 <button class="btn btn-outline" disabled>نه</button>
             </div>
         </div>
 
-        <!-- STEP 2 -->
         <div id="step2" class="glass-card hidden fade-transition">
             <span class="emoji-big">😤</span>
             <h2>دروغ نگیاااا! 😡</h2>
-            <p> چون کوروش یه نفس بیشتر نداره اونم نگاره!<br>داری راستشو میگیییی ؟</p>
+            <p>چون کوروش یه نفس بیشتر نداره!<br>آیا واقعاً حرف راستی میزنی؟</p>
             <div class="btn-group">
                 <button class="btn btn-secondary" onclick="goToStep3()">آره، راست میگم!</button>
                 <button class="btn btn-outline" disabled>نه دروغ گفتم</button>
             </div>
         </div>
 
-        <!-- STEP 3 -->
         <div id="step3" class="glass-card hidden fade-transition">
             <span class="emoji-big">🥰</span>
             <h2>آفرین، قبول شدی!</h2>
             <p>خب حالا که اینطوریه...<br>دکمه پایین رو بزن تا میزان اهمیت و علاقه‌ی کوروش به خودت رو ببینی!</p>
-            <button class="btn continue-btn" onclick="goToStep4()">به فرمان کوری ادامهههه ➡️</button>
+            <button class="btn continue-btn" onclick="goToStep4()">ادامه رو بزن ➡️</button>
         </div>
 
-        <!-- STEP 4 - صفحه روزشمار با قابلیت ذخیره‌سازی -->
         <div id="step4" class="glass-card hidden fade-transition">
             <div class="countdown-header">
                 <span>❤️</span>
@@ -555,14 +601,10 @@
             </div>
 
             <div class="row-split">
-                <!-- باکس اطلاعات با قابلیت ذخیره‌سازی -->
                 <div class="info-box" id="infoBox">
                     <h4>✨ ما دو تا</h4>
-                    <div id="infoList">
-                        <!-- اطلاعات توسط جاوااسکریپت ساخته میشه -->
-                    </div>
+                    <div id="infoList"></div>
                     
-                    <!-- فرم اضافه کردن اطلاعات جدید -->
                     <div class="add-info-form">
                         <div class="form-row">
                             <input type="text" id="newInfoLabel" placeholder="عنوان">
@@ -584,7 +626,6 @@
                     </div>
                 </div>
 
-                <!-- باکس تایمر -->
                 <div class="timer-box" id="timerBox">
                     <div class="time-unit"><span id="days">00</span><small>روز</small></div>
                     <div class="time-unit"><span id="hours">00</span><small>ساعت</small></div>
@@ -593,7 +634,6 @@
                 </div>
             </div>
 
-            <!-- بخش تاریخ آشنایی با لینک به صفحه دوم -->
             <div class="date-link-box">
                 <a href="timeline.html">
                     <div class="date-card">
@@ -628,7 +668,6 @@
         
         const INFO_STORAGE_KEY = 'countdownInfo';
 
-        // ===== داده‌های پیش‌فرض =====
         function getDefaultInfo() {
             return [
                 { icon: '❤️', label: 'از کی با همیم', value: '۲۵ جولای ۲۰۲۶' },
@@ -638,7 +677,6 @@
             ];
         }
 
-        // ===== بارگذاری اطلاعات از localStorage =====
         function loadInfo() {
             const saved = localStorage.getItem(INFO_STORAGE_KEY);
             if (saved) {
@@ -654,30 +692,27 @@
             return getDefaultInfo();
         }
 
-        // ===== ذخیره اطلاعات در localStorage =====
         function saveInfo(data) {
             localStorage.setItem(INFO_STORAGE_KEY, JSON.stringify(data));
         }
 
-        // ===== متغیر اصلی =====
         let infoData = loadInfo();
 
-        // ===== رندر اطلاعات =====
         function renderInfo() {
             const list = document.getElementById('infoList');
             if (infoData.length === 0) {
                 list.innerHTML = '<div style="text-align:center; color:#7a5a68; padding:20px 0; font-size:0.9rem;">هنوز اطلاعاتی ثبت نشده!<br>اولین اطلاعات رو اضافه کن ❤️</div>';
                 return;
             }
-            list.innerHTML = infoData.map(item => `
+            list.innerHTML = infoData.map((item, index) => `
                 <div class="info-item">
                     <span class="info-label">${item.icon} ${item.label}</span>
                     <span class="info-value">${item.value}</span>
+                    <button class="info-delete-btn" onclick="deleteInfoItem(${index})" title="حذف">✕</button>
                 </div>
             `).join('');
         }
 
-        // ===== اضافه کردن اطلاعات جدید =====
         function addInfoItem() {
             const labelInput = document.getElementById('newInfoLabel');
             const valueInput = document.getElementById('newInfoValue');
@@ -693,12 +728,24 @@
             }
 
             infoData.push({ icon, label, value });
-            saveInfo(infoData);  // ذخیره در localStorage
+            saveInfo(infoData);
             renderInfo();
 
             labelInput.value = '';
             valueInput.value = '';
             iconSelect.value = '❤️';
+
+            // اسکرول به پایین
+            const box = document.getElementById('infoBox');
+            setTimeout(() => { box.scrollTop = box.scrollHeight; }, 50);
+        }
+
+        function deleteInfoItem(index) {
+            if (confirm('آیا مطمئنی میخوای این رویداد رو حذف کنی؟ 😢')) {
+                infoData.splice(index, 1);
+                saveInfo(infoData);
+                renderInfo();
+            }
         }
 
         // ============================================
