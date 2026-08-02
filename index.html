@@ -96,7 +96,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 80vh;
+            min-height: auto;
+            padding: 10px 0;
         }
 
         .glass-card {
@@ -229,6 +230,7 @@
             order: 2;
         }
 
+        /* ===== باکس اطلاعات - بدون اسکرول ===== */
         .info-box {
             flex: 1.2;
             background: rgba(255, 255, 255, 0.25);
@@ -239,7 +241,6 @@
             border: 1px solid rgba(255, 255, 255, 0.5);
             display: flex;
             flex-direction: column;
-            justify-content: center;
             min-height: 140px;
             order: 1;
         }
@@ -251,17 +252,84 @@
             font-weight: 700;
             border-bottom: 2px dashed rgba(255, 107, 157, 0.3);
             padding-bottom: 6px;
+            flex-shrink: 0;
         }
+
+        #infoList {
+            flex: 1;
+        }
+
         .info-item {
             display: flex;
             justify-content: space-between;
-            padding: 4px 0;
+            padding: 6px 0;
             font-size: clamp(0.8rem, 2vw, 0.95rem);
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
-        .info-item:last-child { border-bottom: none; }
-        .info-label { color: #4f3a44; font-weight: 400; }
-        .info-value { color: #2d1b26; font-weight: 700; }
+        .info-item:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            color: #4f3a44;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .info-value {
+            color: #2d1b26;
+            font-weight: 700;
+        }
+
+        /* فرم اضافه کردن اطلاعات */
+        .add-info-form {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 2px dashed rgba(255,107,157,0.2);
+            flex-shrink: 0;
+        }
+        .add-info-form .form-row {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .add-info-form input, .add-info-form select {
+            padding: 6px 10px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.4);
+            font-family: inherit;
+            font-size: 0.8rem;
+            color: #2d1b26;
+            outline: none;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 70px;
+        }
+        .add-info-form input:focus, .add-info-form select:focus {
+            border-color: #ff6b9d;
+            background: rgba(255,255,255,0.6);
+        }
+        .add-info-form input::placeholder {
+            color: #8a7a82;
+        }
+        .btn-add-info {
+            padding: 6px 14px;
+            border: none;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
+            color: #fff;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .btn-add-info:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
 
         .time-unit {
             background: rgba(255, 255, 255, 0.5);
@@ -327,21 +395,93 @@
             transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
+        /* لینک تاریخ آشنایی */
+        .date-link-box {
+            margin-top: 20px;
+            border-top: 2px dashed rgba(255,107,157,0.3);
+            padding-top: 18px;
+        }
+        .date-link-box a {
+            text-decoration: none;
+            display: block;
+        }
+        .date-link-box .date-card {
+            background: rgba(255,255,255,0.3);
+            border-radius: 20px;
+            padding: 14px 18px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,107,157,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .date-link-box .date-card:hover {
+            transform: translateX(-5px);
+            background: rgba(255,255,255,0.5);
+            box-shadow: 0 4px 15px rgba(255,107,157,0.1);
+        }
+        .date-link-box .date-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .date-link-box .date-icon {
+            font-size: 2rem;
+        }
+        .date-link-box .date-label {
+            font-size: 0.8rem;
+            color: #7a5a68;
+        }
+        .date-link-box .date-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #d94a7a;
+        }
+        .date-link-box .date-arrow {
+            font-size: 1.5rem;
+            color: #d94a7a;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
             body { padding: 10px; }
-            .app-container { min-height: 70vh; }
-            .glass-card { padding: 20px 16px; border-radius: 32px; }
-            .row-split { flex-direction: column; gap: 10px; }
-            .info-box, .timer-box { min-height: 100px; order: 0 !important; border-radius: 20px; padding: 12px 10px; }
-            .timer-box { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .app-container { 
+                min-height: auto;
+                padding: 10px 0;
+            }
+            .glass-card { 
+                padding: 20px 16px; 
+                border-radius: 32px;
+                max-height: none;
+            }
+            .row-split { 
+                flex-direction: column; 
+                gap: 10px; 
+            }
+            .info-box, .timer-box { 
+                min-height: 100px; 
+                order: 0 !important; 
+                border-radius: 20px; 
+                padding: 12px 10px;
+                max-height: none;
+            }
+            .timer-box { 
+                grid-template-columns: 1fr 1fr; 
+                gap: 6px; 
+            }
             .time-unit { padding: 4px 2px; }
             .time-unit span { font-size: clamp(1.6rem, 5vw, 2.2rem); }
             .btn { padding: 10px 18px; min-width: 80px; font-size: clamp(0.85rem, 2.2vw, 1rem); }
             .continue-btn { padding: 12px 28px; font-size: clamp(1rem, 2.8vw, 1.2rem); max-width: 200px; }
-            .info-item { font-size: clamp(0.75rem, 1.8vw, 0.85rem); padding: 3px 0; }
+            .info-item { font-size: clamp(0.75rem, 1.8vw, 0.85rem); padding: 4px 0; }
             .info-box h4 { font-size: clamp(0.8rem, 2vw, 0.9rem); margin-bottom: 6px; }
             .sticker { opacity: 0.5 !important; }
+            .add-info-form .form-row { flex-direction: column; }
+            .add-info-form input, .add-info-form select { min-width: 100%; }
+            .btn-add-info { width: 100%; }
+            .date-link-box .date-card { padding: 12px 14px; }
+            .date-link-box .date-icon { font-size: 1.6rem; }
+            .date-link-box .date-value { font-size: 1rem; }
         }
 
         @media (max-width: 360px) {
@@ -349,20 +489,22 @@
             .time-unit span { font-size: clamp(1.3rem, 4.5vw, 1.8rem); }
             .btn { padding: 8px 14px; min-width: 70px; font-size: clamp(0.8rem, 2vw, 0.9rem); }
             .btn-group { gap: 8px; }
-            .app-container { min-height: 60vh; }
+            .app-container { min-height: auto; }
+            .info-box { max-height: none; }
         }
 
         @media (min-width: 768px) {
-            .app-container { max-width: 550px; min-height: 60vh; }
+            .app-container { max-width: 550px; min-height: auto; }
             .glass-card { padding: 36px 30px; border-radius: 50px; }
             .row-split { gap: 18px; }
             .time-unit span { font-size: 3.2rem; }
+            .info-box { max-height: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== استیکرهای برجسته گل و قلب ===== -->
+    <!-- ===== استیکرها ===== -->
     <div class="sticker">🌸</div>
     <div class="sticker">💖</div>
     <div class="sticker">🌺</div>
@@ -386,9 +528,9 @@
 
         <!-- STEP 1 -->
         <div id="step1" class="glass-card fade-transition">
-            <span class="emoji-big">🫠🥺</span>
-            <h1>سلام قربونت برم!</h1>
-            <p>یه سوال ازت دارم...<br>تو <strong>نفس کوروشی</strong>؟</p>
+            <span class="emoji-big">🤔</span>
+            <h1>سلام عزیز دلم!</h1>
+            <p>یک سوال خیلی ساده دارم...<br>تو <strong>نفس کوروشی</strong>؟</p>
             <div class="btn-group">
                 <button class="btn btn-primary" onclick="goToStep2()">بله، نَفَسِتم!</button>
                 <button class="btn btn-outline" disabled>نه</button>
@@ -399,7 +541,7 @@
         <div id="step2" class="glass-card hidden fade-transition">
             <span class="emoji-big">😤</span>
             <h2>دروغ نگیاااا! 😡</h2>
-            <p> چون کوروش یه نفس بیشتر نداره اونم نگاره!<br>داری راستشو میگی؟</p>
+            <p>چون کوروش یه نفس بیشتر نداره!<br>آیا واقعاً حرف راستی میزنی؟</p>
             <div class="btn-group">
                 <button class="btn btn-secondary" onclick="goToStep3()">آره، راست میگم!</button>
                 <button class="btn btn-outline" disabled>نه دروغ گفتم</button>
@@ -411,7 +553,7 @@
             <span class="emoji-big">🥰</span>
             <h2>آفرین، قبول شدی!</h2>
             <p>خب حالا که اینطوریه...<br>دکمه پایین رو بزن تا میزان اهمیت و علاقه‌ی کوروش به خودت رو ببینی!</p>
-            <button class="btn continue-btn" onclick="goToStep4()">به فرمان کوری , ادامه ➡️</button>
+            <button class="btn continue-btn" onclick="goToStep4()">ادامه رو بزن ➡️</button>
         </div>
 
         <!-- STEP 4 -->
@@ -421,39 +563,60 @@
                 <h2>عشق من، از امروز تا همیشه!</h2>
                 <p>از تاریخ <strong>۲۵ جولای ۲۰۲۶</strong> به بعد...</p>
             </div>
-            <!-- ===== بخش تاریخ آشنایی با لینک به صفحه دوم ===== -->
-<div style="margin-top: 20px; border-top: 2px dashed rgba(255,107,157,0.3); padding-top: 18px;">
-    <a href="timeline.html" style="text-decoration: none; display: block;">
-        <div style="background: rgba(255,255,255,0.3); border-radius: 20px; padding: 14px 18px; transition: all 0.3s ease; border: 2px solid rgba(255,107,157,0.2);">
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <span style="font-size: 2rem;">📅</span>
-                    <div style="text-align: right;">
-                        <div style="font-size: 0.8rem; color: #7a5a68;">تاریخ آشنایی ما</div>
-                        <div style="font-size: 1.1rem; font-weight: 700; color: #d94a7a;">۲۵ جولای ۲۰۲۶ ❤️</div>
-                    </div>
-                </div>
-                <span style="font-size: 1.5rem; color: #d94a7a;">👈</span>
-            </div>
-        </div>
-    </a>
-</div>
 
             <div class="row-split">
+                <!-- باکس اطلاعات -->
                 <div class="info-box" id="infoBox">
                     <h4>✨ ما دو تا</h4>
-                    <div class="info-item"><span class="info-label">❤️ از کی با همیم</span><span class="info-value">۲۵ جولای ۲۰۲۶</span></div>
-                    <div class="info-item"><span class="info-label">🌹 اولین قرار</span><span class="info-value">همون روز عشقم</span></div>
-                    <div class="info-item"><span class="info-label">💫 وضعیت</span><span class="info-value">بی‌نهایت عاشق</span></div>
-                    <div class="info-item"><span class="info-label">🎯 هدف</span><span class="info-value">همیشه با هم</span></div>
+                    <div id="infoList">
+                        <!-- اطلاعات توسط جاوااسکریپت ساخته میشه -->
+                    </div>
+                    
+                    <!-- فرم اضافه کردن اطلاعات جدید -->
+                    <div class="add-info-form">
+                        <div class="form-row">
+                            <input type="text" id="newInfoLabel" placeholder="عنوان">
+                            <input type="text" id="newInfoValue" placeholder="مقدار">
+                            <select id="newInfoIcon">
+                                <option value="❤️">❤️</option>
+                                <option value="🌹">🌹</option>
+                                <option value="💕">💕</option>
+                                <option value="💖">💖</option>
+                                <option value="✨">✨</option>
+                                <option value="🎯">🎯</option>
+                                <option value="🌟">🌟</option>
+                                <option value="💍">💍</option>
+                                <option value="🏠">🏠</option>
+                                <option value="✈️">✈️</option>
+                            </select>
+                            <button class="btn-add-info" onclick="addInfoItem()">➕</button>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- باکس تایمر -->
                 <div class="timer-box" id="timerBox">
                     <div class="time-unit"><span id="days">00</span><small>روز</small></div>
                     <div class="time-unit"><span id="hours">00</span><small>ساعت</small></div>
                     <div class="time-unit"><span id="minutes">00</span><small>دقیقه</small></div>
                     <div class="time-unit"><span id="seconds">00</span><small>ثانیه</small></div>
                 </div>
+            </div>
+
+            <!-- ===== بخش تاریخ آشنایی با لینک به صفحه دوم ===== -->
+            <div class="date-link-box">
+                <a href="timeline.html">
+                    <div class="date-card">
+                        <div class="date-left">
+                            <span class="date-icon">📅</span>
+                            <div>
+                                <div class="date-label">تاریخ آشنایی ما</div>
+                                <div class="date-value">۲۵ جولای ۲۰۲۶ ❤️</div>
+                            </div>
+                        </div>
+                        <span class="date-arrow">👈</span>
+                    </div>
+                </a>
             </div>
 
             <div class="love-message">
@@ -530,8 +693,62 @@
             }, 1000);
         }
 
-        // ===== INIT =====
+        // ===== مدیریت اطلاعات باکس (step4) =====
+        let infoData = [
+            { icon: '❤️', label: 'از کی با همیم', value: '۲۵ جولای ۲۰۲۶' },
+            { icon: '🌹', label: 'اولین قرار', value: 'همون روز عشقم' },
+            { icon: '💫', label: 'وضعیت', value: 'بی‌نهایت عاشق' },
+            { icon: '🎯', label: 'هدف', value: 'همیشه با هم' }
+        ];
+
+        function renderInfo() {
+            const list = document.getElementById('infoList');
+            if (infoData.length === 0) {
+                list.innerHTML = '<div style="text-align:center; color:#7a5a68; padding:20px 0; font-size:0.9rem;">هنوز اطلاعاتی ثبت نشده!<br>اولین اطلاعات رو اضافه کن ❤️</div>';
+                return;
+            }
+            list.innerHTML = infoData.map(item => `
+                <div class="info-item">
+                    <span class="info-label">${item.icon} ${item.label}</span>
+                    <span class="info-value">${item.value}</span>
+                </div>
+            `).join('');
+        }
+
+        function addInfoItem() {
+            const labelInput = document.getElementById('newInfoLabel');
+            const valueInput = document.getElementById('newInfoValue');
+            const iconSelect = document.getElementById('newInfoIcon');
+
+            const label = labelInput.value.trim();
+            const value = valueInput.value.trim();
+            const icon = iconSelect.value;
+
+            if (!label || !value) {
+                alert('لطفاً عنوان و مقدار رو وارد کن! ❤️');
+                return;
+            }
+
+            infoData.push({ icon, label, value });
+            renderInfo();
+
+            labelInput.value = '';
+            valueInput.value = '';
+            iconSelect.value = '❤️';
+        }
+
+        // ===== اضافه کردن با Enter =====
         document.addEventListener('DOMContentLoaded', function() {
+            renderInfo();
+            
+            document.getElementById('newInfoLabel').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') addInfoItem();
+            });
+            document.getElementById('newInfoValue').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') addInfoItem();
+            });
+
+            // تنظیم opacity اولیه
             const allCards = document.querySelectorAll('.glass-card');
             allCards.forEach(c => {
                 if (!c.classList.contains('hidden')) {
@@ -544,5 +761,6 @@
             });
         });
     </script>
+
 </body>
 </html>
