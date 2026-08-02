@@ -133,15 +133,15 @@
             font-size: clamp(0.9rem, 2.5vw, 1.05rem);
         }
 
-        /* ===== لیست تایم‌لاین - بدون اسکرول افقی ===== */
+        /* ===== لیست تایم‌لاین ===== */
         .timeline-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
             margin-top: 16px;
             max-height: 400px;
-            overflow-y: auto;    /* فقط اسکرول عمودی */
-            overflow-x: hidden;  /* غیرفعال کردن اسکرول افقی */
+            overflow-y: auto;
+            overflow-x: hidden;
             padding-right: 4px;
         }
         .timeline-list::-webkit-scrollbar {
@@ -167,7 +167,6 @@
             gap: 14px;
             transition: all 0.3s ease;
             position: relative;
-            /* جلوگیری از سرریز شدن متن */
             overflow: hidden;
         }
         .timeline-item:hover {
@@ -184,7 +183,7 @@
 
         .timeline-content {
             flex: 1;
-            min-width: 0; /* برای جلوگیری از سرریز */
+            min-width: 0;
         }
         .timeline-content .date {
             font-size: 0.75rem;
@@ -197,7 +196,7 @@
             font-size: clamp(1rem, 2.5vw, 1.1rem);
             font-weight: 700;
             color: #2d1b26;
-            word-wrap: break-word;    /* شکستن کلمات بلند */
+            word-wrap: break-word;
             overflow-wrap: break-word;
         }
         .timeline-content .desc {
@@ -420,46 +419,78 @@
     </div>
 
     <script>
-        // ===== داده‌های پیش‌فرض =====
-        let timelineData = [
-            {
-                id: 1,
-                icon: '💕',
-                date: '۲۵ جولای ۲۰۲۶',
-                title: 'روزی که همدیگه رو دیدیم',
-                desc: 'اولین بار که چشامون به هم افتاد ❤️'
-            },
-            {
-                id: 2,
-                icon: '🌹',
-                date: '۱ آگوست ۲۰۲۶',
-                title: 'قرار اول',
-                desc: 'اولین قرار عاشقانه‌مون'
-            },
-            {
-                id: 3,
-                icon: '😘',
-                date: '۸ آگوست ۲۰۲۶',
-                title: 'اولین بوسه',
-                desc: 'لحظه‌ای که دلم دیوونه شد'
-            },
-            {
-                id: 4,
-                icon: '❤️',
-                date: '۱۵ آگوست ۲۰۲۶',
-                title: 'ابراز عشق',
-                desc: 'گفتم که عاشقتم و تو هم گفتی...'
-            },
-            {
-                id: 5,
-                icon: '🎉',
-                date: '۲۵ آگوست ۲۰۲۶',
-                title: 'یک ماهگی',
-                desc: 'یک ماه گذشت و من هر روز بیشتر عاشقت میشم'
-            }
-        ];
+        // ============================================
+        // ذخیره‌سازی با localStorage
+        // ============================================
+        
+        const STORAGE_KEY = 'timelineData';
 
-        let nextId = 6;
+        // ===== داده‌های پیش‌فرض =====
+        function getDefaultData() {
+            return [
+                {
+                    id: 1,
+                    icon: '💕',
+                    date: '۲۵ جولای ۲۰۲۶',
+                    title: 'روزی که همدیگه رو دیدیم',
+                    desc: 'اولین بار که چشامون به هم افتاد ❤️'
+                },
+                {
+                    id: 2,
+                    icon: '🌹',
+                    date: '۱ آگوست ۲۰۲۶',
+                    title: 'قرار اول',
+                    desc: 'اولین قرار عاشقانه‌مون'
+                },
+                {
+                    id: 3,
+                    icon: '😘',
+                    date: '۸ آگوست ۲۰۲۶',
+                    title: 'اولین بوسه',
+                    desc: 'لحظه‌ای که دلم دیوونه شد'
+                },
+                {
+                    id: 4,
+                    icon: '❤️',
+                    date: '۱۵ آگوست ۲۰۲۶',
+                    title: 'ابراز عشق',
+                    desc: 'گفتم که عاشقتم و تو هم گفتی...'
+                },
+                {
+                    id: 5,
+                    icon: '🎉',
+                    date: '۲۵ آگوست ۲۰۲۶',
+                    title: 'یک ماهگی',
+                    desc: 'یک ماه گذشت و من هر روز بیشتر عاشقت میشم'
+                }
+            ];
+        }
+
+        // ===== بارگذاری داده از localStorage =====
+        function loadData() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    if (data && data.length > 0) {
+                        return data;
+                    }
+                } catch (e) {
+                    console.log('خطا در بارگذاری داده');
+                }
+            }
+            // اگر داده‌ای نبود، داده‌های پیش‌فرض رو برمیگردونه
+            return getDefaultData();
+        }
+
+        // ===== ذخیره داده در localStorage =====
+        function saveData(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        // ===== متغیر اصلی =====
+        let timelineData = loadData();
+        let nextId = timelineData.length > 0 ? Math.max(...timelineData.map(item => item.id)) + 1 : 1;
 
         // ===== رندر کردن لیست =====
         function renderTimeline() {
@@ -515,6 +546,7 @@
             };
 
             timelineData.push(newItem);
+            saveData(timelineData);  // ذخیره در localStorage
             renderTimeline();
 
             // پاک کردن فیلدها
@@ -532,14 +564,16 @@
         function deleteTimelineItem(id) {
             if (confirm('آیا مطمئنی میخوای این خاطره رو حذف کنی؟ 😢')) {
                 timelineData = timelineData.filter(item => item.id !== id);
+                saveData(timelineData);  // ذخیره در localStorage
                 renderTimeline();
             }
         }
 
-        // ===== کلید Enter برای اضافه کردن =====
+        // ===== تنظیمات اولیه =====
         document.addEventListener('DOMContentLoaded', function() {
             renderTimeline();
 
+            // اضافه کردن با Enter
             const inputs = ['newDate', 'newTitle', 'newDesc'];
             inputs.forEach(id => {
                 document.getElementById(id).addEventListener('keypress', function(e) {
