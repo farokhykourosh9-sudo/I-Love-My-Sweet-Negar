@@ -29,7 +29,7 @@
             overflow: hidden;
         }
 
-        /* ===== استیکرهای برجسته گل و قلب ===== */
+        /* ===== استیکرها ===== */
         .sticker {
             position: fixed;
             font-size: clamp(1.8rem, 5vw, 3.5rem);
@@ -39,7 +39,6 @@
             filter: drop-shadow(0 4px 12px rgba(255, 107, 157, 0.3));
             opacity: 0.6;
         }
-
         .sticker:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; font-size: clamp(2.5rem, 7vw, 5rem); }
         .sticker:nth-child(2) { top: 8%; right: 8%; animation-delay: 1.2s; }
         .sticker:nth-child(3) { bottom: 12%; left: 6%; animation-delay: 2.5s; }
@@ -104,13 +103,13 @@
             border: 2px solid rgba(255, 255, 255, 0.6);
             border-radius: 44px;
             padding: 30px 24px;
-            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08), 0 0 40px rgba(255, 107, 157, 0.05);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
             width: 100%;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         .header .emoji-big {
             font-size: clamp(3.5rem, 10vw, 4.5rem);
@@ -123,7 +122,6 @@
             50% { transform: scale(1.08); }
             100% { transform: scale(1); }
         }
-
         .header h1 {
             color: #2d1b26;
             font-size: clamp(1.5rem, 5vw, 2.2rem);
@@ -133,7 +131,6 @@
         .header p {
             color: #4f3a44;
             font-size: clamp(0.9rem, 2.5vw, 1.05rem);
-            margin-bottom: 0;
         }
 
         /* ===== لیست تایم‌لاین ===== */
@@ -142,12 +139,25 @@
             flex-direction: column;
             gap: 12px;
             margin-top: 16px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+        .timeline-list::-webkit-scrollbar {
+            width: 4px;
+        }
+        .timeline-list::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+        .timeline-list::-webkit-scrollbar-thumb {
+            background: #ff6b9d;
+            border-radius: 10px;
         }
 
         .timeline-item {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
             border-radius: 20px;
             padding: 14px 18px;
             border: 1px solid rgba(255, 255, 255, 0.5);
@@ -155,6 +165,7 @@
             align-items: center;
             gap: 14px;
             transition: all 0.3s ease;
+            position: relative;
         }
         .timeline-item:hover {
             transform: translateX(-5px);
@@ -190,7 +201,90 @@
             margin-top: 2px;
         }
 
+        /* دکمه حذف */
+        .delete-btn {
+            background: rgba(255, 0, 0, 0.1);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #e74c3c;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .delete-btn:hover {
+            background: rgba(255, 0, 0, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* ===== فرم اضافه کردن ===== */
+        .add-form {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 2px dashed rgba(255, 107, 157, 0.3);
+        }
+        .add-form .form-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .add-form input, .add-form select {
+            padding: 10px 14px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: #2d1b26;
+            outline: none;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+        }
+        .add-form input:focus, .add-form select:focus {
+            border-color: #ff6b9d;
+            background: rgba(255, 255, 255, 0.6);
+        }
+        .add-form input::placeholder {
+            color: #8a7a82;
+        }
+        .add-form select option {
+            color: #2d1b26;
+        }
+
+        .btn-add {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
+            color: #fff;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+        }
+
         /* ===== دکمه برگشت ===== */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
         .back-btn {
             display: inline-flex;
             align-items: center;
@@ -207,18 +301,22 @@
             box-shadow: 0 6px 18px rgba(192, 132, 252, 0.25);
             transition: all 0.3s ease;
             text-decoration: none;
-            margin-top: 20px;
         }
         .back-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 28px rgba(192, 132, 252, 0.4);
         }
 
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
+        .empty-msg {
+            text-align: center;
+            color: #7a5a68;
+            padding: 30px 0;
+            font-size: 1.1rem;
+        }
+        .empty-msg span {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -228,21 +326,10 @@
             .glass-card { padding: 20px 16px; border-radius: 32px; }
             .timeline-item { padding: 12px 14px; gap: 10px; }
             .timeline-icon { font-size: 1.6rem; width: 38px; }
+            .add-form .form-row { flex-direction: column; }
+            .add-form input, .add-form select { min-width: 100%; }
+            .btn-add { width: 100%; }
             .back-btn { padding: 10px 22px; font-size: 0.95rem; }
-        }
-
-        @media (max-width: 360px) {
-            .glass-card { padding: 16px 12px; border-radius: 28px; }
-            .timeline-item { padding: 10px 12px; }
-            .timeline-icon { font-size: 1.3rem; width: 32px; }
-            .timeline-content .title { font-size: 0.9rem; }
-            .timeline-content .desc { font-size: 0.8rem; }
-        }
-
-        @media (min-width: 768px) {
-            .app-container { max-width: 600px; }
-            .glass-card { padding: 40px 34px; border-radius: 50px; }
-            .timeline-item { padding: 18px 22px; }
         }
     </style>
 </head>
@@ -268,7 +355,7 @@
     <!-- ===== APP ===== -->
     <div class="app-container">
         <div class="glass-card">
-            
+
             <!-- هدر -->
             <div class="header">
                 <span class="emoji-big">📖</span>
@@ -277,87 +364,178 @@
             </div>
 
             <!-- ===== لیست دیت‌ها ===== -->
-            <div class="timeline-list">
-                
-                <!-- آیتم ۱: تاریخ آشنایی -->
-                <div class="timeline-item">
-                    <div class="timeline-icon">💕</div>
-                    <div class="timeline-content">
-                        <span class="date">۲۵ جولای ۲۰۲۶</span>
-                        <div class="title">روزی که همدیگه رو دیدیم</div>
-                        <div class="desc">اولین بار که چشامون به هم افتاد ❤️</div>
-                    </div>
+            <div class="timeline-list" id="timelineList">
+                <!-- آیتم‌ها توسط جاوااسکریپت ساخته میشن -->
+            </div>
+
+            <!-- ===== فرم اضافه کردن دیت جدید ===== -->
+            <div class="add-form">
+                <div class="form-row">
+                    <input type="text" id="newDate" placeholder="تاریخ (مثلاً ۲۵ جولای ۲۰۲۶)">
+                    <input type="text" id="newTitle" placeholder="عنوان (مثلاً قرار اول)">
+                    <input type="text" id="newDesc" placeholder="توضیحات (اختیاری)">
+                    <select id="newIcon">
+                        <option value="💕">💕</option>
+                        <option value="❤️">❤️</option>
+                        <option value="🌹">🌹</option>
+                        <option value="😘">😘</option>
+                        <option value="🎉">🎉</option>
+                        <option value="🎂">🎂</option>
+                        <option value="💖">💖</option>
+                        <option value="💗">💗</option>
+                        <option value="🌟">🌟</option>
+                        <option value="✨">✨</option>
+                        <option value="🔥">🔥</option>
+                        <option value="💍">💍</option>
+                        <option value="🏠">🏠</option>
+                        <option value="✈️">✈️</option>
+                        <option value="🎁">🎁</option>
+                        <option value="📌">📌</option>
+                    </select>
+                    <button class="btn-add" onclick="addTimelineItem()">➕ اضافه کن</button>
                 </div>
-
-                <!-- آیتم ۲: قرار اول -->
-                <div class="timeline-item">
-                    <div class="timeline-icon">🌹</div>
-                    <div class="timeline-content">
-                        <span class="date">۱ آگوست ۲۰۲۶</span>
-                        <div class="title">قرار اول</div>
-                        <div class="desc">اولین قرار عاشقانه‌مون</div>
-                    </div>
-                </div>
-
-                <!-- آیتم ۳: اولین بوسه -->
-                <div class="timeline-item">
-                    <div class="timeline-icon">😘</div>
-                    <div class="timeline-content">
-                        <span class="date">۸ آگوست ۲۰۲۶</span>
-                        <div class="title">اولین بوسه</div>
-                        <div class="desc">لحظه‌ای که دلم دیوونه شد</div>
-                    </div>
-                </div>
-
-                <!-- آیتم ۴: ابراز عشق -->
-                <div class="timeline-item">
-                    <div class="timeline-icon">❤️</div>
-                    <div class="timeline-content">
-                        <span class="date">۱۵ آگوست ۲۰۲۶</span>
-                        <div class="title">ابراز عشق</div>
-                        <div class="desc">گفتم که عاشقتم و تو هم گفتی...</div>
-                    </div>
-                </div>
-
-                <!-- آیتم ۵: یک ماهگی -->
-                <div class="timeline-item">
-                    <div class="timeline-icon">🎉</div>
-                    <div class="timeline-content">
-                        <span class="date">۲۵ آگوست ۲۰۲۶</span>
-                        <div class="title">یک ماهگی</div>
-                        <div class="desc">یک ماه گذشت و من هر روز بیشتر عاشقت میشم</div>
-                    </div>
-                </div>
-
-                <!-- 
-                    ============================================
-                    آیتم‌های جدید رو اینجا اضافه کن:
-                    کپی کن و اطلاعات رو تغییر بده
-                    ============================================
-                -->
-
-                <!-- نمونه برای اضافه کردن آیتم جدید (کپی کن و استفاده کن):
-                <div class="timeline-item">
-                    <div class="timeline-icon">📌</div>
-                    <div class="timeline-content">
-                        <span class="date">تاریخ</span>
-                        <div class="title">عنوان</div>
-                        <div class="desc">توضیحات</div>
-                    </div>
-                </div>
-                -->
-
             </div>
 
             <!-- دکمه برگشت -->
             <div class="btn-group">
-                <a href="index.html" class="back-btn">
-                    ⬅️ برگشت به صفحه اصلی
-                </a>
+                <a href="index.html" class="back-btn">⬅️ برگشت به صفحه اصلی</a>
             </div>
 
         </div>
     </div>
+
+    <script>
+        // ===== داده‌های پیش‌فرض (میتونی هرچی دوست داری تغییر بدی) =====
+        let timelineData = [
+            {
+                id: 1,
+                icon: '💕',
+                date: '۲۵ جولای ۲۰۲۶',
+                title: 'روزی که همدیگه رو دیدیم',
+                desc: 'اولین بار که چشامون به هم افتاد ❤️'
+            },
+            {
+                id: 2,
+                icon: '🌹',
+                date: '۱ آگوست ۲۰۲۶',
+                title: 'قرار اول',
+                desc: 'اولین قرار عاشقانه‌مون'
+            },
+            {
+                id: 3,
+                icon: '😘',
+                date: '۸ آگوست ۲۰۲۶',
+                title: 'اولین بوسه',
+                desc: 'لحظه‌ای که دلم دیوونه شد'
+            },
+            {
+                id: 4,
+                icon: '❤️',
+                date: '۱۵ آگوست ۲۰۲۶',
+                title: 'ابراز عشق',
+                desc: 'گفتم که عاشقتم و تو هم گفتی...'
+            },
+            {
+                id: 5,
+                icon: '🎉',
+                date: '۲۵ آگوست ۲۰۲۶',
+                title: 'یک ماهگی',
+                desc: 'یک ماه گذشت و من هر روز بیشتر عاشقت میشم'
+            }
+        ];
+
+        let nextId = 6;
+
+        // ===== رندر کردن لیست =====
+        function renderTimeline() {
+            const list = document.getElementById('timelineList');
+            
+            if (timelineData.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-msg">
+                        <span>📭</span>
+                        هنوز خاطره‌ای ثبت نشده!<br>
+                        اولین خاطره‌ت رو اضافه کن ❤️
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = timelineData.map(item => `
+                <div class="timeline-item" data-id="${item.id}">
+                    <div class="timeline-icon">${item.icon}</div>
+                    <div class="timeline-content">
+                        <span class="date">${item.date}</span>
+                        <div class="title">${item.title}</div>
+                        ${item.desc ? `<div class="desc">${item.desc}</div>` : ''}
+                    </div>
+                    <button class="delete-btn" onclick="deleteTimelineItem(${item.id})" title="حذف">✕</button>
+                </div>
+            `).join('');
+        }
+
+        // ===== اضافه کردن آیتم جدید =====
+        function addTimelineItem() {
+            const dateInput = document.getElementById('newDate');
+            const titleInput = document.getElementById('newTitle');
+            const descInput = document.getElementById('newDesc');
+            const iconSelect = document.getElementById('newIcon');
+
+            const date = dateInput.value.trim();
+            const title = titleInput.value.trim();
+            const desc = descInput.value.trim();
+            const icon = iconSelect.value;
+
+            if (!date || !title) {
+                alert('لطفاً حداقل تاریخ و عنوان رو وارد کن! ❤️');
+                return;
+            }
+
+            const newItem = {
+                id: nextId++,
+                icon: icon,
+                date: date,
+                title: title,
+                desc: desc || ''
+            };
+
+            timelineData.push(newItem);
+            renderTimeline();
+
+            // پاک کردن فیلدها
+            dateInput.value = '';
+            titleInput.value = '';
+            descInput.value = '';
+            iconSelect.value = '💕';
+
+            // اسکرول به پایین لیست
+            const list = document.getElementById('timelineList');
+            list.scrollTop = list.scrollHeight;
+        }
+
+        // ===== حذف آیتم =====
+        function deleteTimelineItem(id) {
+            if (confirm('آیا مطمئنی میخوای این خاطره رو حذف کنی؟ 😢')) {
+                timelineData = timelineData.filter(item => item.id !== id);
+                renderTimeline();
+            }
+        }
+
+        // ===== کلید Enter برای اضافه کردن =====
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTimeline();
+
+            // اضافه کردن با Enter
+            const inputs = ['newDate', 'newTitle', 'newDesc'];
+            inputs.forEach(id => {
+                document.getElementById(id).addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        addTimelineItem();
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
