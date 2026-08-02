@@ -24,7 +24,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 16px;
+            padding: 12px;
             position: relative;
             overflow-y: auto;
             overflow-x: hidden;
@@ -93,7 +93,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 16px 0;
+            padding: 12px 0;
         }
 
         .glass-card {
@@ -102,7 +102,7 @@
             -webkit-backdrop-filter: blur(14px);
             border: 2px solid rgba(255, 255, 255, 0.6);
             border-radius: 44px;
-            padding: 28px 22px;
+            padding: 24px 18px;
             box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
             width: 100%;
             display: flex;
@@ -111,7 +111,7 @@
 
         .header {
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             flex-shrink: 0;
         }
         .header .emoji-big {
@@ -136,17 +136,16 @@
             font-size: clamp(0.85rem, 2.2vw, 1rem);
         }
 
-        /* ===== لیست خاطرات با اسکرول ===== */
         .timeline-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            padding: 4px 4px 8px 4px;
+            gap: 8px;
+            padding: 6px 4px 8px 4px;
             flex: 1 1 auto;
             overflow-y: auto;
             overflow-x: hidden;
-            min-height: 200px;
-            max-height: 450px;
+            min-height: 180px;
+            max-height: 420px;
             border-radius: 16px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -170,14 +169,14 @@
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(4px);
             border-radius: 18px;
-            padding: 12px 16px;
+            padding: 10px 14px;
             border: 1px solid rgba(255, 255, 255, 0.5);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             transition: all 0.3s ease;
             flex-shrink: 0;
-            min-height: 65px;
+            min-height: 58px;
         }
         .timeline-item:hover {
             background: rgba(255, 255, 255, 0.7);
@@ -185,9 +184,9 @@
         }
 
         .timeline-icon {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             flex-shrink: 0;
-            width: 40px;
+            width: 36px;
             text-align: center;
         }
 
@@ -196,14 +195,14 @@
             min-width: 0;
         }
         .timeline-content .date {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #7a5a68;
             font-weight: 500;
             display: block;
             margin-bottom: 1px;
         }
         .timeline-content .title {
-            font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+            font-size: clamp(0.9rem, 2.2vw, 1rem);
             font-weight: 700;
             color: #2d1b26;
             word-wrap: break-word;
@@ -211,7 +210,7 @@
             line-height: 1.3;
         }
         .timeline-content .desc {
-            font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+            font-size: clamp(0.75rem, 1.8vw, 0.85rem);
             color: #4f3a44;
             margin-top: 1px;
             word-wrap: break-word;
@@ -223,9 +222,9 @@
             background: rgba(255, 0, 0, 0.1);
             border: none;
             border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            font-size: 0.9rem;
+            width: 24px;
+            height: 24px;
+            font-size: 0.8rem;
             cursor: pointer;
             color: #e74c3c;
             transition: all 0.3s ease;
@@ -240,29 +239,29 @@
         }
 
         .add-form {
-            margin-top: 14px;
-            padding-top: 14px;
+            margin-top: 12px;
+            padding-top: 12px;
             border-top: 2px dashed rgba(255, 107, 157, 0.3);
             flex-shrink: 0;
         }
         .add-form .form-row {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
         .add-form input, .add-form select {
-            padding: 8px 12px;
+            padding: 6px 10px;
             border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 14px;
+            border-radius: 12px;
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(4px);
             font-family: inherit;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #2d1b26;
             outline: none;
             transition: all 0.3s ease;
             flex: 1;
-            min-width: 100px;
+            min-width: 80px;
         }
         .add-form input:focus, .add-form select:focus {
             border-color: #ff6b9d;
@@ -270,17 +269,18 @@
         }
         .add-form input::placeholder {
             color: #8a7a82;
+            font-size: 0.7rem;
         }
         .add-form select option {
             color: #2d1b26;
         }
 
         .btn-add {
-            padding: 8px 20px;
+            padding: 6px 16px;
             border: none;
-            border-radius: 14px;
+            border-radius: 12px;
             font-family: inherit;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 700;
             cursor: pointer;
             background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
@@ -296,21 +296,21 @@
 
         .nav-links {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 14px;
+            margin-top: 12px;
             flex-shrink: 0;
         }
         .nav-link {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border: none;
             border-radius: 60px;
             font-family: inherit;
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -318,7 +318,7 @@
             color: #fff;
             flex: 1;
             justify-content: center;
-            min-width: 80px;
+            min-width: 70px;
         }
         .nav-link-home {
             background: linear-gradient(135deg, #c084fc, #a855f7);
@@ -340,66 +340,73 @@
         .empty-msg {
             text-align: center;
             color: #7a5a68;
-            padding: 40px 0;
-            font-size: 1rem;
+            padding: 30px 0;
+            font-size: 0.95rem;
         }
         .empty-msg span {
-            font-size: 3rem;
+            font-size: 2.8rem;
             display: block;
             margin-bottom: 8px;
         }
 
         @media (max-width: 480px) {
-            body { padding: 10px; }
+            body { padding: 8px; }
             .app-container { min-height: 100vh; padding: 8px 0; }
             .glass-card { 
-                padding: 18px 14px; 
+                padding: 16px 12px; 
                 border-radius: 30px;
             }
             .timeline-item { 
-                padding: 10px 12px; 
-                gap: 10px;
-                min-height: 55px;
-            }
-            .timeline-icon { font-size: 1.5rem; width: 35px; }
-            .timeline-list { 
+                padding: 8px 10px; 
                 gap: 8px;
-                min-height: 150px;
-                max-height: 350px;
+                min-height: 48px;
+                border-radius: 14px;
             }
-            .add-form .form-row { flex-direction: column; }
-            .add-form input, .add-form select { min-width: 100%; }
-            .btn-add { width: 100%; }
+            .timeline-icon { font-size: 1.3rem; width: 30px; }
+            .timeline-list { 
+                gap: 6px;
+                min-height: 140px;
+                max-height: 300px;
+                padding: 4px 4px 6px 4px;
+                border-radius: 12px;
+            }
+            .timeline-content .title { font-size: 0.85rem; }
+            .timeline-content .desc { font-size: 0.7rem; }
+            .timeline-content .date { font-size: 0.55rem; }
+            .add-form .form-row { flex-direction: column; gap: 4px; }
+            .add-form input, .add-form select { min-width: 100%; font-size: 0.7rem; padding: 5px 8px; }
+            .btn-add { width: 100%; font-size: 0.75rem; padding: 5px 12px; }
             .nav-link { 
-                padding: 8px 16px; 
-                font-size: 0.8rem;
-                min-width: 60px;
+                padding: 6px 12px; 
+                font-size: 0.75rem;
+                min-width: 50px;
             }
-            .nav-links { gap: 6px; }
-            .header { margin-bottom: 12px; }
-            .header .emoji-big { font-size: 2.8rem; }
+            .nav-links { gap: 4px; margin-top: 10px; }
+            .header { margin-bottom: 10px; }
+            .header .emoji-big { font-size: 2.5rem; }
             .add-form { margin-top: 10px; padding-top: 10px; }
+            .delete-btn { width: 20px; height: 20px; font-size: 0.6rem; }
         }
 
         @media (max-width: 360px) {
-            .glass-card { padding: 14px 10px; border-radius: 24px; }
-            .timeline-item { padding: 8px 10px; min-height: 48px; }
-            .timeline-icon { font-size: 1.2rem; width: 30px; }
-            .timeline-content .title { font-size: 0.85rem; }
-            .timeline-content .desc { font-size: 0.75rem; }
-            .timeline-content .date { font-size: 0.6rem; }
-            .delete-btn { width: 24px; height: 24px; font-size: 0.7rem; }
-            .add-form input, .add-form select { padding: 6px 10px; font-size: 0.8rem; }
-            .btn-add { padding: 6px 16px; font-size: 0.8rem; }
-            .nav-link { padding: 6px 12px; font-size: 0.75rem; min-width: 50px; }
+            .glass-card { padding: 12px 8px; border-radius: 24px; }
+            .timeline-item { padding: 6px 8px; min-height: 42px; }
+            .timeline-icon { font-size: 1.1rem; width: 26px; }
+            .timeline-content .title { font-size: 0.75rem; }
+            .timeline-content .desc { font-size: 0.65rem; }
+            .timeline-content .date { font-size: 0.5rem; }
+            .delete-btn { width: 18px; height: 18px; font-size: 0.5rem; }
+            .add-form input, .add-form select { font-size: 0.65rem; padding: 4px 6px; }
+            .btn-add { font-size: 0.65rem; padding: 4px 10px; }
+            .nav-link { padding: 4px 10px; font-size: 0.65rem; min-width: 40px; }
             .timeline-list { 
-                min-height: 120px;
-                max-height: 280px;
+                min-height: 100px;
+                max-height: 250px;
             }
         }
 
         @media (min-width: 768px) {
-            .timeline-list { max-height: 550px; }
+            .timeline-list { max-height: 520px; min-height: 220px; }
         }
     </style>
 </head>
@@ -494,7 +501,28 @@
             localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         }
 
+        // ===== تابع مرتب‌سازی بر اساس تاریخ =====
+        function sortTimelineData(data) {
+            const monthMap = {
+                'جولای': 7,
+                'آگوست': 8,
+                'سپتامبر': 9,
+                'اکتبر': 10,
+                'نوامبر': 11,
+                'دسامبر': 12
+            };
+            
+            return data.sort((a, b) => {
+                // استخراج روز از تاریخ
+                const dayA = parseInt(a.date) || 0;
+                const dayB = parseInt(b.date) || 0;
+                return dayB - dayA;
+            });
+        }
+
         let timelineData = loadData();
+        // مرتب‌سازی اولیه
+        timelineData = sortTimelineData(timelineData);
         let nextId = timelineData.length > 0 ? Math.max(...timelineData.map(item => item.id)) + 1 : 1;
 
         function renderTimeline() {
@@ -533,6 +561,8 @@
             }
 
             timelineData.push({ id: nextId++, icon, date, title, desc: desc || '' });
+            // مرتب‌سازی بعد از اضافه کردن
+            timelineData = sortTimelineData(timelineData);
             saveData(timelineData);
             renderTimeline();
 
