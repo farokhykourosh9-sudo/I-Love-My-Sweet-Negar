@@ -23,10 +23,12 @@
             background: linear-gradient(145deg, #ffd6e0 0%, #fbc2eb 50%, #a18cd1 100%);
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 16px;
             position: relative;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .sticker {
@@ -103,10 +105,8 @@
             padding: 28px 22px;
             box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
             width: 100%;
-            max-height: 96vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
         }
 
         .header {
@@ -136,17 +136,20 @@
             font-size: clamp(0.85rem, 2.2vw, 1rem);
         }
 
+        /* ===== لیست خاطرات با اسکرول ===== */
         .timeline-list {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            padding-right: 4px;
-            padding-bottom: 4px;
+            padding: 4px 4px 8px 4px;
             flex: 1 1 auto;
             overflow-y: auto;
             overflow-x: hidden;
-            min-height: 0;
-            max-height: 100%;
+            min-height: 200px;
+            max-height: 450px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .timeline-list::-webkit-scrollbar {
             width: 5px;
@@ -164,7 +167,7 @@
         }
 
         .timeline-item {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(4px);
             border-radius: 18px;
             padding: 12px 16px;
@@ -177,7 +180,7 @@
             min-height: 65px;
         }
         .timeline-item:hover {
-            background: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.7);
             box-shadow: 0 4px 15px rgba(255, 107, 157, 0.1);
         }
 
@@ -291,7 +294,6 @@
             box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
         }
 
-        /* ===== دکمه‌های ناوبری داخل باکس ===== */
         .nav-links {
             display: flex;
             gap: 10px;
@@ -353,7 +355,6 @@
             .glass-card { 
                 padding: 18px 14px; 
                 border-radius: 30px;
-                max-height: 98vh;
             }
             .timeline-item { 
                 padding: 10px 12px; 
@@ -361,7 +362,11 @@
                 min-height: 55px;
             }
             .timeline-icon { font-size: 1.5rem; width: 35px; }
-            .timeline-list { gap: 8px; }
+            .timeline-list { 
+                gap: 8px;
+                min-height: 150px;
+                max-height: 350px;
+            }
             .add-form .form-row { flex-direction: column; }
             .add-form input, .add-form select { min-width: 100%; }
             .btn-add { width: 100%; }
@@ -387,10 +392,14 @@
             .add-form input, .add-form select { padding: 6px 10px; font-size: 0.8rem; }
             .btn-add { padding: 6px 16px; font-size: 0.8rem; }
             .nav-link { padding: 6px 12px; font-size: 0.75rem; min-width: 50px; }
+            .timeline-list { 
+                min-height: 120px;
+                max-height: 280px;
+            }
         }
 
-        @media (min-height: 900px) {
-            .timeline-list { max-height: 600px; }
+        @media (min-width: 768px) {
+            .timeline-list { max-height: 550px; }
         }
     </style>
 </head>
@@ -449,7 +458,6 @@
                 </div>
             </div>
 
-            <!-- ===== لینک‌های ناوبری داخل باکس ===== -->
             <div class="nav-links">
                 <a href="index.html" class="nav-link nav-link-home">🏠 صفحه اصلی</a>
                 <a href="gallery.html" class="nav-link nav-link-gallery">🖼️ گالری</a>
