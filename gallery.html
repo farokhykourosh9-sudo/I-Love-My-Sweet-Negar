@@ -23,10 +23,12 @@
             background: linear-gradient(145deg, #ffd6e0 0%, #fbc2eb 50%, #a18cd1 100%);
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 16px;
+            align-items: flex-start;
+            padding: 12px;
             position: relative;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .sticker {
@@ -89,7 +91,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 16px 0;
+            padding: 12px 0;
         }
 
         .glass-card {
@@ -98,18 +100,16 @@
             -webkit-backdrop-filter: blur(14px);
             border: 2px solid rgba(255, 255, 255, 0.6);
             border-radius: 44px;
-            padding: 28px 22px;
+            padding: 24px 18px;
             box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
             width: 100%;
-            max-height: 96vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             flex-shrink: 0;
         }
         .header .emoji-big {
@@ -137,16 +137,20 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 10px;
             flex: 1 1 auto;
             overflow-y: auto;
             overflow-x: hidden;
             padding: 4px 2px;
-            min-height: 0;
+            min-height: 150px;
+            max-height: 450px;
             align-content: start;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
         .gallery-grid::-webkit-scrollbar {
-            width: 4px;
+            width: 5px;
         }
         .gallery-grid::-webkit-scrollbar-track {
             background: rgba(255,255,255,0.2);
@@ -156,11 +160,14 @@
             background: linear-gradient(135deg, #ff6b9d, #c084fc);
             border-radius: 10px;
         }
+        .gallery-grid::-webkit-scrollbar-thumb:hover {
+            background: #ff6b9d;
+        }
 
         .gallery-item {
             position: relative;
             aspect-ratio: 1;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -170,7 +177,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 80px;
+            min-height: 70px;
         }
         .gallery-item:hover {
             transform: scale(1.05);
@@ -183,6 +190,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            pointer-events: none;
         }
 
         .gallery-item .empty-box {
@@ -191,27 +199,28 @@
             align-items: center;
             justify-content: center;
             color: #7a5a68;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             opacity: 0.5;
             text-align: center;
-            padding: 10px;
+            padding: 8px;
+            pointer-events: none;
         }
         .gallery-item .empty-box span {
-            font-size: 2.5rem;
+            font-size: 2rem;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .delete-btn {
             position: absolute;
-            top: 6px;
-            right: 6px;
-            background: rgba(255, 0, 0, 0.8);
+            top: 4px;
+            right: 4px;
+            background: rgba(255, 0, 0, 0.85);
             border: none;
             border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            font-size: 0.8rem;
+            width: 26px;
+            height: 26px;
+            font-size: 0.7rem;
             color: #fff;
             cursor: pointer;
             display: none;
@@ -229,11 +238,11 @@
         }
 
         .upload-btn {
-            padding: 12px 28px;
+            padding: 10px 24px;
             border: none;
             border-radius: 60px;
             font-family: inherit;
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            font-size: clamp(0.95rem, 2.5vw, 1.05rem);
             font-weight: 700;
             cursor: pointer;
             background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
@@ -242,7 +251,7 @@
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         .upload-btn:hover {
             transform: translateY(-3px);
@@ -251,23 +260,23 @@
 
         .nav-buttons {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 14px;
+            margin-top: 12px;
             flex-shrink: 0;
-            padding-top: 14px;
+            padding-top: 12px;
             border-top: 2px dashed rgba(255, 107, 157, 0.3);
         }
         .nav-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 24px;
+            gap: 6px;
+            padding: 8px 16px;
             border: none;
             border-radius: 60px;
             font-family: inherit;
-            font-size: clamp(0.9rem, 2.2vw, 1rem);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -275,7 +284,7 @@
             color: #fff;
             flex: 1;
             justify-content: center;
-            min-width: 100px;
+            min-width: 70px;
         }
         .nav-btn-secondary {
             background: linear-gradient(135deg, #c084fc, #a855f7);
@@ -323,9 +332,9 @@
             background: rgba(255, 255, 255, 0.2);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.8rem;
+            width: 44px;
+            height: 44px;
+            font-size: 1.6rem;
             color: #fff;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -341,40 +350,51 @@
         .empty-gallery {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px;
             color: #7a5a68;
         }
         .empty-gallery span {
-            font-size: 4rem;
+            font-size: 3.5rem;
             display: block;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .empty-gallery p {
-            font-size: 1.1rem;
+            font-size: 1rem;
+        }
+        .empty-gallery .sub {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 4px;
         }
 
         @media (max-width: 480px) {
-            body { padding: 10px; }
+            body { padding: 8px; }
             .app-container { min-height: 100vh; padding: 8px 0; }
             .glass-card { 
-                padding: 18px 14px; 
+                padding: 16px 12px; 
                 border-radius: 30px;
-                max-height: 98vh;
             }
             .gallery-grid {
-                gap: 8px;
+                gap: 6px;
+                min-height: 120px;
+                max-height: 300px;
+                padding: 4px;
+                border-radius: 12px;
             }
             .gallery-item {
-                border-radius: 14px;
-                min-height: 60px;
+                border-radius: 12px;
+                min-height: 55px;
+                border-width: 2px;
             }
+            .gallery-item .empty-box span { font-size: 1.5rem; }
+            .gallery-item .empty-box { font-size: 0.6rem; }
             .nav-btn {
-                padding: 8px 16px;
-                font-size: 0.85rem;
-                min-width: 70px;
+                padding: 6px 12px;
+                font-size: 0.75rem;
+                min-width: 50px;
             }
             .nav-buttons {
-                gap: 8px;
+                gap: 4px;
                 margin-top: 10px;
                 padding-top: 10px;
             }
@@ -383,22 +403,42 @@
                 max-height: 70vh;
             }
             .modal-close {
-                width: 40px;
-                height: 40px;
-                font-size: 1.4rem;
+                width: 36px;
+                height: 36px;
+                font-size: 1.2rem;
                 top: 12px;
                 left: 12px;
             }
             .upload-btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
+                padding: 8px 16px;
+                font-size: 0.85rem;
             }
+            .delete-btn {
+                width: 22px;
+                height: 22px;
+                font-size: 0.6rem;
+                top: 3px;
+                right: 3px;
+            }
+            .header .emoji-big { font-size: 2.5rem; }
+            .header { margin-bottom: 10px; }
+            .empty-gallery { padding: 30px 15px; }
+            .empty-gallery span { font-size: 2.8rem; }
+            .empty-gallery p { font-size: 0.9rem; }
         }
 
         @media (max-width: 360px) {
-            .glass-card { padding: 12px 10px; border-radius: 24px; }
-            .gallery-grid { gap: 6px; }
-            .gallery-item { min-height: 50px; border-radius: 12px; }
+            .glass-card { padding: 12px 8px; border-radius: 24px; }
+            .gallery-grid { gap: 4px; min-height: 100px; max-height: 250px; }
+            .gallery-item { min-height: 45px; border-radius: 10px; }
+            .gallery-item .empty-box span { font-size: 1.2rem; }
+            .nav-btn { padding: 4px 8px; font-size: 0.65rem; min-width: 40px; }
+            .upload-btn { padding: 6px 12px; font-size: 0.75rem; }
+            .delete-btn { width: 18px; height: 18px; font-size: 0.5rem; }
+        }
+
+        @media (min-width: 768px) {
+            .gallery-grid { max-height: 550px; min-height: 200px; }
         }
     </style>
 </head>
@@ -475,7 +515,7 @@
                     <div class="empty-gallery">
                         <span>📭</span>
                         <p>هنوز عکسی اضافه نشده!</p>
-                        <p style="font-size:0.9rem; margin-top:8px;">روی دکمه "اضافه کردن عکس" کلیک کن ❤️</p>
+                        <p class="sub">روی دکمه "اضافه کردن عکس" کلیک کن ❤️</p>
                     </div>
                 `;
                 return;
@@ -483,24 +523,46 @@
 
             grid.innerHTML = galleryImages.map((img, index) => `
                 <div class="gallery-item" onclick="openImage(${index})">
-                    <img src="${img}" alt="عکس ${index + 1}">
+                    <img src="${img}" alt="عکس ${index + 1}" loading="lazy">
                     <button class="delete-btn" onclick="event.stopPropagation(); deleteImage(${index})">✕</button>
                 </div>
             `).join('');
         }
 
+        // ===== آپلود عکس =====
         document.getElementById('fileInput').addEventListener('change', function(e) {
             const files = e.target.files;
             if (!files.length) return;
 
+            let loadedCount = 0;
+            const totalFiles = files.length;
+
             Array.from(files).forEach(file => {
-                if (!file.type.startsWith('image/')) return;
+                if (!file.type.startsWith('image/')) {
+                    loadedCount++;
+                    return;
+                }
                 
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     galleryImages.push(event.target.result);
-                    saveImages(galleryImages);
-                    renderGallery();
+                    loadedCount++;
+                    
+                    // وقتی همه عکس‌ها بارگذاری شدن
+                    if (loadedCount === totalFiles) {
+                        saveImages(galleryImages);
+                        renderGallery();
+                        // اسکرول به پایین
+                        const grid = document.getElementById('galleryGrid');
+                        setTimeout(() => { grid.scrollTop = grid.scrollHeight; }, 100);
+                    }
+                };
+                reader.onerror = function() {
+                    loadedCount++;
+                    if (loadedCount === totalFiles) {
+                        saveImages(galleryImages);
+                        renderGallery();
+                    }
                 };
                 reader.readAsDataURL(file);
             });
