@@ -29,7 +29,6 @@
             overflow: hidden;
         }
 
-        /* ===== استیکرها ===== */
         .sticker {
             position: fixed;
             font-size: clamp(1.8rem, 5vw, 3.5rem);
@@ -54,7 +53,6 @@
             100% { transform: translateY(0px) rotate(0deg) scale(1); }
         }
 
-        /* ===== BUBBLES ===== */
         .bubbles {
             position: fixed;
             top: 0;
@@ -83,7 +81,6 @@
             100% { transform: translateY(-110vh) scale(1.3); opacity: 0; }
         }
 
-        /* ===== APP ===== */
         .app-container {
             position: relative;
             z-index: 10;
@@ -94,7 +91,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px 0;
+            padding: 16px 0;
         }
 
         .glass-card {
@@ -103,23 +100,24 @@
             -webkit-backdrop-filter: blur(14px);
             border: 2px solid rgba(255, 255, 255, 0.6);
             border-radius: 44px;
-            padding: 30px 24px;
+            padding: 28px 22px;
             box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
             width: 100%;
-            max-height: 95vh;
+            max-height: 96vh;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             flex-shrink: 0;
         }
         .header .emoji-big {
-            font-size: clamp(3.5rem, 10vw, 4.5rem);
+            font-size: clamp(3rem, 9vw, 4rem);
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             animation: gentle-pulse 2.4s infinite;
         }
         @keyframes gentle-pulse {
@@ -129,28 +127,26 @@
         }
         .header h1 {
             color: #2d1b26;
-            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            font-size: clamp(1.3rem, 4.5vw, 2rem);
             font-weight: 900;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         .header p {
             color: #4f3a44;
-            font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+            font-size: clamp(0.85rem, 2.2vw, 1rem);
         }
 
-        /* ===== لیست تایم‌لاین با اسکرول عمودی ===== */
         .timeline-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 8px;
+            gap: 10px;
             padding-right: 4px;
-            padding-bottom: 8px;
-            flex: 1;
+            padding-bottom: 4px;
+            flex: 1 1 auto;
             overflow-y: auto;
             overflow-x: hidden;
-            min-height: 200px;
-            max-height: 500px;
+            min-height: 0;
+            max-height: 100%;
         }
         .timeline-list::-webkit-scrollbar {
             width: 5px;
@@ -170,16 +166,15 @@
         .timeline-item {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(4px);
-            border-radius: 20px;
-            padding: 14px 18px;
+            border-radius: 18px;
+            padding: 12px 16px;
             border: 1px solid rgba(255, 255, 255, 0.5);
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
             flex-shrink: 0;
+            min-height: 65px;
         }
         .timeline-item:hover {
             background: rgba(255, 255, 255, 0.55);
@@ -187,9 +182,9 @@
         }
 
         .timeline-icon {
-            font-size: 2rem;
+            font-size: 1.8rem;
             flex-shrink: 0;
-            width: 45px;
+            width: 40px;
             text-align: center;
         }
 
@@ -198,35 +193,36 @@
             min-width: 0;
         }
         .timeline-content .date {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #7a5a68;
             font-weight: 500;
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
         .timeline-content .title {
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            font-size: clamp(0.95rem, 2.2vw, 1.05rem);
             font-weight: 700;
             color: #2d1b26;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            line-height: 1.3;
         }
         .timeline-content .desc {
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            font-size: clamp(0.8rem, 1.8vw, 0.9rem);
             color: #4f3a44;
-            margin-top: 2px;
+            margin-top: 1px;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            line-height: 1.3;
         }
 
-        /* ===== دکمه حذف ===== */
         .delete-btn {
             background: rgba(255, 0, 0, 0.1);
             border: none;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            font-size: 1rem;
+            width: 28px;
+            height: 28px;
+            font-size: 0.9rem;
             cursor: pointer;
             color: #e74c3c;
             transition: all 0.3s ease;
@@ -240,31 +236,30 @@
             transform: scale(1.1);
         }
 
-        /* ===== فرم اضافه کردن ===== */
         .add-form {
-            margin-top: 16px;
-            padding-top: 16px;
+            margin-top: 14px;
+            padding-top: 14px;
             border-top: 2px dashed rgba(255, 107, 157, 0.3);
             flex-shrink: 0;
         }
         .add-form .form-row {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
         .add-form input, .add-form select {
-            padding: 10px 14px;
+            padding: 8px 12px;
             border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 16px;
+            border-radius: 14px;
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(4px);
             font-family: inherit;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #2d1b26;
             outline: none;
             transition: all 0.3s ease;
             flex: 1;
-            min-width: 120px;
+            min-width: 100px;
         }
         .add-form input:focus, .add-form select:focus {
             border-color: #ff6b9d;
@@ -278,11 +273,11 @@
         }
 
         .btn-add {
-            padding: 10px 24px;
+            padding: 8px 20px;
             border: none;
-            border-radius: 16px;
+            border-radius: 14px;
             font-family: inherit;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             cursor: pointer;
             background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
@@ -296,82 +291,111 @@
             box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
         }
 
-        /* ===== دکمه برگشت ===== */
-        .btn-group {
+        /* ===== دکمه‌های ناوبری داخل باکس ===== */
+        .nav-links {
             display: flex;
+            gap: 10px;
             justify-content: center;
-            gap: 12px;
             flex-wrap: wrap;
-            margin-top: 16px;
+            margin-top: 14px;
             flex-shrink: 0;
         }
-        .back-btn {
+        .nav-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
+            gap: 6px;
+            padding: 10px 20px;
             border: none;
             border-radius: 60px;
             font-family: inherit;
-            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             font-weight: 700;
             cursor: pointer;
-            background: linear-gradient(135deg, #c084fc, #a855f7);
-            color: #fff;
-            box-shadow: 0 6px 18px rgba(192, 132, 252, 0.25);
             transition: all 0.3s ease;
             text-decoration: none;
+            color: #fff;
+            flex: 1;
+            justify-content: center;
+            min-width: 80px;
         }
-        .back-btn:hover {
+        .nav-link-home {
+            background: linear-gradient(135deg, #c084fc, #a855f7);
+            box-shadow: 0 6px 18px rgba(192, 132, 252, 0.25);
+        }
+        .nav-link-home:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 28px rgba(192, 132, 252, 0.4);
+        }
+        .nav-link-gallery {
+            background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
+            box-shadow: 0 6px 18px rgba(255, 107, 157, 0.25);
+        }
+        .nav-link-gallery:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(255, 107, 157, 0.4);
         }
 
         .empty-msg {
             text-align: center;
             color: #7a5a68;
-            padding: 30px 0;
-            font-size: 1.1rem;
+            padding: 40px 0;
+            font-size: 1rem;
         }
         .empty-msg span {
             font-size: 3rem;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
             body { padding: 10px; }
-            .app-container { min-height: 100vh; padding: 10px 0; }
+            .app-container { min-height: 100vh; padding: 8px 0; }
             .glass-card { 
-                padding: 20px 16px; 
-                border-radius: 32px;
+                padding: 18px 14px; 
+                border-radius: 30px;
                 max-height: 98vh;
             }
-            .timeline-item { padding: 12px 14px; gap: 10px; }
-            .timeline-icon { font-size: 1.6rem; width: 38px; }
-            .timeline-list { max-height: 350px; min-height: 150px; }
+            .timeline-item { 
+                padding: 10px 12px; 
+                gap: 10px;
+                min-height: 55px;
+            }
+            .timeline-icon { font-size: 1.5rem; width: 35px; }
+            .timeline-list { gap: 8px; }
             .add-form .form-row { flex-direction: column; }
             .add-form input, .add-form select { min-width: 100%; }
             .btn-add { width: 100%; }
-            .back-btn { padding: 10px 22px; font-size: 0.95rem; width: 100%; justify-content: center; }
+            .nav-link { 
+                padding: 8px 16px; 
+                font-size: 0.8rem;
+                min-width: 60px;
+            }
+            .nav-links { gap: 6px; }
+            .header { margin-bottom: 12px; }
+            .header .emoji-big { font-size: 2.8rem; }
+            .add-form { margin-top: 10px; padding-top: 10px; }
         }
 
         @media (max-width: 360px) {
-            .glass-card { padding: 16px 12px; border-radius: 28px; }
-            .timeline-item { padding: 10px 12px; }
-            .timeline-icon { font-size: 1.3rem; width: 32px; }
-            .timeline-list { max-height: 280px; min-height: 120px; }
+            .glass-card { padding: 14px 10px; border-radius: 24px; }
+            .timeline-item { padding: 8px 10px; min-height: 48px; }
+            .timeline-icon { font-size: 1.2rem; width: 30px; }
+            .timeline-content .title { font-size: 0.85rem; }
+            .timeline-content .desc { font-size: 0.75rem; }
+            .timeline-content .date { font-size: 0.6rem; }
+            .delete-btn { width: 24px; height: 24px; font-size: 0.7rem; }
+            .add-form input, .add-form select { padding: 6px 10px; font-size: 0.8rem; }
+            .btn-add { padding: 6px 16px; font-size: 0.8rem; }
+            .nav-link { padding: 6px 12px; font-size: 0.75rem; min-width: 50px; }
         }
 
-        @media (min-height: 800px) {
+        @media (min-height: 900px) {
             .timeline-list { max-height: 600px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== استیکرها ===== -->
     <div class="sticker">🌸</div>
     <div class="sticker">💖</div>
     <div class="sticker">🌺</div>
@@ -379,7 +403,6 @@
     <div class="sticker">🌷</div>
     <div class="sticker">💗</div>
 
-    <!-- ===== BUBBLES ===== -->
     <div class="bubbles">
         <div class="bubble"></div>
         <div class="bubble"></div>
@@ -388,28 +411,22 @@
         <div class="bubble"></div>
     </div>
 
-    <!-- ===== APP ===== -->
     <div class="app-container">
         <div class="glass-card">
 
-            <!-- هدر -->
             <div class="header">
                 <span class="emoji-big">📖</span>
                 <h1>خاطرات ما ❤️</h1>
                 <p>هر لحظه با تو، یه خاطره‌ست...</p>
             </div>
 
-            <!-- ===== لیست دیت‌ها با اسکرول عمودی ===== -->
-            <div class="timeline-list" id="timelineList">
-                <!-- آیتم‌ها توسط جاوااسکریپت ساخته میشن -->
-            </div>
+            <div class="timeline-list" id="timelineList"></div>
 
-            <!-- ===== فرم اضافه کردن دیت جدید ===== -->
             <div class="add-form">
                 <div class="form-row">
-                    <input type="text" id="newDate" placeholder="تاریخ (مثلاً ۲۵ جولای ۲۰۲۶)">
-                    <input type="text" id="newTitle" placeholder="عنوان (مثلاً قرار اول)">
-                    <input type="text" id="newDesc" placeholder="توضیحات (اختیاری)">
+                    <input type="text" id="newDate" placeholder="تاریخ">
+                    <input type="text" id="newTitle" placeholder="عنوان">
+                    <input type="text" id="newDesc" placeholder="توضیحات">
                     <select id="newIcon">
                         <option value="💕">💕</option>
                         <option value="❤️">❤️</option>
@@ -428,109 +445,56 @@
                         <option value="🎁">🎁</option>
                         <option value="📌">📌</option>
                     </select>
-                    <button class="btn-add" onclick="addTimelineItem()">➕ اضافه کن</button>
+                    <button class="btn-add" onclick="addTimelineItem()">➕</button>
                 </div>
             </div>
 
-            <!-- ===== دکمه برگشت به صفحه اصلی ===== -->
-            <div class="btn-group">
-                <a href="index.html" class="back-btn">⬅️ برگشت به صفحه اصلی</a>
+            <!-- ===== لینک‌های ناوبری داخل باکس ===== -->
+            <div class="nav-links">
+                <a href="index.html" class="nav-link nav-link-home">🏠 صفحه اصلی</a>
+                <a href="gallery.html" class="nav-link nav-link-gallery">🖼️ گالری</a>
             </div>
 
         </div>
     </div>
 
-    <!-- بعد از دکمه برگشت به صفحه اصلی، توی btn-group اضافه کن -->
-<a href="gallery.html" class="back-btn" style="background: linear-gradient(135deg, #ff6b9d, #ee5a8b);">🖼️ گالری عکس‌ها</a>
-    
     <script>
-        // ============================================
-        // ذخیره‌سازی با localStorage
-        // ============================================
-        
         const STORAGE_KEY = 'timelineData';
 
-        // ===== داده‌های پیش‌فرض =====
         function getDefaultData() {
             return [
-                {
-                    id: 1,
-                    icon: '💕',
-                    date: '۲۵ جولای ۲۰۲۶',
-                    title: 'روزی که همدیگه رو دیدیم',
-                    desc: 'اولین بار که چشامون به هم افتاد ❤️'
-                },
-                {
-                    id: 2,
-                    icon: '🌹',
-                    date: '۱ آگوست ۲۰۲۶',
-                    title: 'قرار اول',
-                    desc: 'اولین قرار عاشقانه‌مون'
-                },
-                {
-                    id: 3,
-                    icon: '😘',
-                    date: '۸ آگوست ۲۰۲۶',
-                    title: 'اولین بوسه',
-                    desc: 'لحظه‌ای که دلم دیوونه شد'
-                },
-                {
-                    id: 4,
-                    icon: '❤️',
-                    date: '۱۵ آگوست ۲۰۲۶',
-                    title: 'ابراز عشق',
-                    desc: 'گفتم که عاشقتم و تو هم گفتی...'
-                },
-                {
-                    id: 5,
-                    icon: '🎉',
-                    date: '۲۵ آگوست ۲۰۲۶',
-                    title: 'یک ماهگی',
-                    desc: 'یک ماه گذشت و من هر روز بیشتر عاشقت میشم'
-                }
+                { id: 1, icon: '💕', date: '۲۵ جولای ۲۰۲۶', title: 'روزی که همدیگه رو دیدیم', desc: 'اولین بار که چشامون به هم افتاد ❤️' },
+                { id: 2, icon: '🌹', date: '۱ آگوست ۲۰۲۶', title: 'قرار اول', desc: 'اولین قرار عاشقانه‌مون' },
+                { id: 3, icon: '😘', date: '۸ آگوست ۲۰۲۶', title: 'اولین بوسه', desc: 'لحظه‌ای که دلم دیوونه شد' },
+                { id: 4, icon: '❤️', date: '۱۵ آگوست ۲۰۲۶', title: 'ابراز عشق', desc: 'گفتم که عاشقتم و تو هم گفتی...' },
+                { id: 5, icon: '🎉', date: '۲۵ آگوست ۲۰۲۶', title: 'یک ماهگی', desc: 'یک ماه گذشت و من هر روز بیشتر عاشقت میشم' }
             ];
         }
 
-        // ===== بارگذاری داده از localStorage =====
         function loadData() {
             const saved = localStorage.getItem(STORAGE_KEY);
             if (saved) {
                 try {
                     const data = JSON.parse(saved);
-                    if (data && data.length > 0) {
-                        return data;
-                    }
-                } catch (e) {
-                    console.log('خطا در بارگذاری داده');
-                }
+                    if (data && data.length > 0) return data;
+                } catch (e) {}
             }
             return getDefaultData();
         }
 
-        // ===== ذخیره داده در localStorage =====
         function saveData(data) {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         }
 
-        // ===== متغیر اصلی =====
         let timelineData = loadData();
         let nextId = timelineData.length > 0 ? Math.max(...timelineData.map(item => item.id)) + 1 : 1;
 
-        // ===== رندر کردن لیست =====
         function renderTimeline() {
             const list = document.getElementById('timelineList');
-            
             if (timelineData.length === 0) {
-                list.innerHTML = `
-                    <div class="empty-msg">
-                        <span>📭</span>
-                        هنوز خاطره‌ای ثبت نشده!<br>
-                        اولین خاطره‌ت رو اضافه کن ❤️
-                    </div>
-                `;
+                list.innerHTML = `<div class="empty-msg"><span>📭</span>هنوز خاطره‌ای ثبت نشده!<br>اولین خاطره‌ت رو اضافه کن ❤️</div>`;
                 return;
             }
-
             list.innerHTML = timelineData.map(item => `
                 <div class="timeline-item" data-id="${item.id}">
                     <div class="timeline-icon">${item.icon}</div>
@@ -544,7 +508,6 @@
             `).join('');
         }
 
-        // ===== اضافه کردن آیتم جدید =====
         function addTimelineItem() {
             const dateInput = document.getElementById('newDate');
             const titleInput = document.getElementById('newTitle');
@@ -561,30 +524,19 @@
                 return;
             }
 
-            const newItem = {
-                id: nextId++,
-                icon: icon,
-                date: date,
-                title: title,
-                desc: desc || ''
-            };
-
-            timelineData.push(newItem);
+            timelineData.push({ id: nextId++, icon, date, title, desc: desc || '' });
             saveData(timelineData);
             renderTimeline();
 
-            // پاک کردن فیلدها
             dateInput.value = '';
             titleInput.value = '';
             descInput.value = '';
             iconSelect.value = '💕';
 
-            // اسکرول به پایین لیست
             const list = document.getElementById('timelineList');
-            list.scrollTop = list.scrollHeight;
+            setTimeout(() => { list.scrollTop = list.scrollHeight; }, 50);
         }
 
-        // ===== حذف آیتم =====
         function deleteTimelineItem(id) {
             if (confirm('آیا مطمئنی میخوای این خاطره رو حذف کنی؟ 😢')) {
                 timelineData = timelineData.filter(item => item.id !== id);
@@ -593,16 +545,11 @@
             }
         }
 
-        // ===== تنظیمات اولیه =====
         document.addEventListener('DOMContentLoaded', function() {
             renderTimeline();
-
-            const inputs = ['newDate', 'newTitle', 'newDesc'];
-            inputs.forEach(id => {
+            ['newDate', 'newTitle', 'newDesc'].forEach(id => {
                 document.getElementById(id).addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        addTimelineItem();
-                    }
+                    if (e.key === 'Enter') addTimelineItem();
                 });
             });
         });
