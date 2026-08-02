@@ -20,15 +20,26 @@
 
         body {
             font-family: 'Vazirmatn', sans-serif;
-            background: linear-gradient(145deg, #ffd6e0 0%, #fbc2eb 50%, #a18cd1 100%);
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 12px;
+            padding: 10px;
             position: relative;
             overflow-y: auto;
             overflow-x: hidden;
             min-height: 100vh;
+        }
+
+        /* ===== گرادیان ثابت ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(145deg, #ffd6e0 0%, #fbc2eb 50%, #a18cd1 100%);
+            z-index: -1;
         }
 
         .sticker {
@@ -38,20 +49,20 @@
             z-index: 2;
             animation: floatSticker 8s ease-in-out infinite;
             filter: drop-shadow(0 4px 12px rgba(255, 107, 157, 0.3));
-            opacity: 0.6;
+            opacity: 0.5;
         }
-        .sticker:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; font-size: clamp(2.5rem, 7vw, 5rem); }
-        .sticker:nth-child(2) { top: 8%; right: 8%; animation-delay: 1.2s; }
-        .sticker:nth-child(3) { bottom: 12%; left: 6%; animation-delay: 2.5s; }
-        .sticker:nth-child(4) { bottom: 8%; right: 6%; animation-delay: 0.8s; font-size: clamp(3rem, 8vw, 5.5rem); }
-        .sticker:nth-child(5) { top: 45%; left: 2%; animation-delay: 3.2s; font-size: clamp(1.8rem, 5vw, 3.5rem); opacity: 0.4; }
-        .sticker:nth-child(6) { top: 40%; right: 2%; animation-delay: 1.8s; font-size: clamp(1.8rem, 5vw, 3.5rem); opacity: 0.4; }
+        .sticker:nth-child(1) { top: 3%; left: 3%; animation-delay: 0s; font-size: clamp(2rem, 5vw, 4rem); }
+        .sticker:nth-child(2) { top: 5%; right: 5%; animation-delay: 1.2s; }
+        .sticker:nth-child(3) { bottom: 8%; left: 4%; animation-delay: 2.5s; }
+        .sticker:nth-child(4) { bottom: 5%; right: 4%; animation-delay: 0.8s; font-size: clamp(2.2rem, 6vw, 4.5rem); }
+        .sticker:nth-child(5) { top: 40%; left: 1%; animation-delay: 3.2s; font-size: clamp(1.2rem, 3vw, 2rem); opacity: 0.3; }
+        .sticker:nth-child(6) { top: 35%; right: 1%; animation-delay: 1.8s; font-size: clamp(1.2rem, 3vw, 2rem); opacity: 0.3; }
 
         @keyframes floatSticker {
             0% { transform: translateY(0px) rotate(0deg) scale(1); }
-            25% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
+            25% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
             50% { transform: translateY(5px) rotate(-3deg) scale(0.95); }
-            75% { transform: translateY(-10px) rotate(4deg) scale(1.02); }
+            75% { transform: translateY(-8px) rotate(4deg) scale(1.02); }
             100% { transform: translateY(0px) rotate(0deg) scale(1); }
         }
 
@@ -68,15 +79,15 @@
         .bubble {
             position: absolute;
             bottom: -60px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             animation: rise linear infinite;
         }
-        .bubble:nth-child(1) { width: 80px; height: 80px; left: 5%; animation-duration: 16s; }
-        .bubble:nth-child(2) { width: 40px; height: 40px; left: 25%; animation-duration: 12s; animation-delay: 2s; }
-        .bubble:nth-child(3) { width: 110px; height: 110px; left: 45%; animation-duration: 22s; animation-delay: 4s; }
-        .bubble:nth-child(4) { width: 60px; height: 60px; left: 70%; animation-duration: 14s; animation-delay: 1s; }
-        .bubble:nth-child(5) { width: 90px; height: 90px; left: 88%; animation-duration: 19s; animation-delay: 3s; }
+        .bubble:nth-child(1) { width: 60px; height: 60px; left: 5%; animation-duration: 16s; }
+        .bubble:nth-child(2) { width: 30px; height: 30px; left: 25%; animation-duration: 12s; animation-delay: 2s; }
+        .bubble:nth-child(3) { width: 80px; height: 80px; left: 45%; animation-duration: 22s; animation-delay: 4s; }
+        .bubble:nth-child(4) { width: 45px; height: 45px; left: 70%; animation-duration: 14s; animation-delay: 1s; }
+        .bubble:nth-child(5) { width: 70px; height: 70px; left: 88%; animation-duration: 19s; animation-delay: 3s; }
         @keyframes rise {
             0% { transform: translateY(0) scale(0.6); opacity: 0.3; }
             50% { opacity: 0.8; }
@@ -87,23 +98,23 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 550px;
+            max-width: 500px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 12px 0;
+            padding: 10px 0;
         }
 
         .glass-card {
             background: rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            border-radius: 44px;
-            padding: 24px 18px;
-            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 32px;
+            padding: 18px 14px;
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.06);
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -111,29 +122,29 @@
 
         .header {
             text-align: center;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             flex-shrink: 0;
         }
         .header .emoji-big {
-            font-size: clamp(3rem, 9vw, 4rem);
+            font-size: clamp(2.8rem, 8vw, 3.8rem);
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             animation: gentle-pulse 2.4s infinite;
         }
         @keyframes gentle-pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.08); }
+            50% { transform: scale(1.06); }
             100% { transform: scale(1); }
         }
         .header h1 {
             color: #2d1b26;
-            font-size: clamp(1.3rem, 4.5vw, 2rem);
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
             font-weight: 900;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
         .header p {
             color: #4f3a44;
-            font-size: clamp(0.85rem, 2.2vw, 1rem);
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
         }
 
         .timeline-list {
@@ -144,43 +155,40 @@
             flex: 1 1 auto;
             overflow-y: auto;
             overflow-x: hidden;
-            min-height: 180px;
-            max-height: 420px;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-height: 160px;
+            max-height: 380px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
         .timeline-list::-webkit-scrollbar {
-            width: 5px;
+            width: 4px;
         }
         .timeline-list::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
             border-radius: 10px;
         }
         .timeline-list::-webkit-scrollbar-thumb {
             background: linear-gradient(135deg, #ff6b9d, #c084fc);
             border-radius: 10px;
         }
-        .timeline-list::-webkit-scrollbar-thumb:hover {
-            background: #ff6b9d;
-        }
 
         .timeline-item {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.45);
             backdrop-filter: blur(4px);
-            border-radius: 18px;
+            border-radius: 16px;
             padding: 10px 14px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             display: flex;
             align-items: center;
             gap: 10px;
             transition: all 0.3s ease;
             flex-shrink: 0;
-            min-height: 58px;
+            min-height: 55px;
         }
         .timeline-item:hover {
-            background: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.1);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.08);
         }
 
         .timeline-icon {
@@ -202,7 +210,7 @@
             margin-bottom: 1px;
         }
         .timeline-content .title {
-            font-size: clamp(0.9rem, 2.2vw, 1rem);
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
             font-weight: 700;
             color: #2d1b26;
             word-wrap: break-word;
@@ -210,7 +218,7 @@
             line-height: 1.3;
         }
         .timeline-content .desc {
-            font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+            font-size: clamp(0.7rem, 1.8vw, 0.8rem);
             color: #4f3a44;
             margin-top: 1px;
             word-wrap: break-word;
@@ -219,12 +227,12 @@
         }
 
         .delete-btn {
-            background: rgba(255, 0, 0, 0.1);
+            background: rgba(255, 0, 0, 0.08);
             border: none;
             border-radius: 50%;
             width: 24px;
             height: 24px;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             cursor: pointer;
             color: #e74c3c;
             transition: all 0.3s ease;
@@ -238,60 +246,64 @@
             transform: scale(1.1);
         }
 
+        /* ===== فرم اضافه کردن - دو به دو در موبایل ===== */
         .add-form {
             margin-top: 12px;
             padding-top: 12px;
-            border-top: 2px dashed rgba(255, 107, 157, 0.3);
+            border-top: 1.5px dashed rgba(255, 107, 157, 0.25);
             flex-shrink: 0;
         }
         .add-form .form-row {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 6px;
-            flex-wrap: wrap;
+        }
+        .add-form .form-row .full-width {
+            grid-column: 1 / -1;
         }
         .add-form input, .add-form select {
-            padding: 6px 10px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 8px 12px;
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(4px);
             font-family: inherit;
-            font-size: 0.8rem;
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
             color: #2d1b26;
             outline: none;
             transition: all 0.3s ease;
-            flex: 1;
-            min-width: 80px;
+            width: 100%;
         }
         .add-form input:focus, .add-form select:focus {
             border-color: #ff6b9d;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.5);
         }
         .add-form input::placeholder {
             color: #8a7a82;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
         }
         .add-form select option {
             color: #2d1b26;
         }
 
         .btn-add {
-            padding: 6px 16px;
+            padding: 8px 16px;
             border: none;
             border-radius: 12px;
             font-family: inherit;
-            font-size: 0.8rem;
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
             font-weight: 700;
             cursor: pointer;
             background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
             color: #fff;
             transition: all 0.3s ease;
             white-space: nowrap;
-            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
+            grid-column: 1 / -1;
         }
         .btn-add:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
         }
 
         .nav-links {
@@ -308,7 +320,7 @@
             gap: 6px;
             padding: 8px 16px;
             border: none;
-            border-radius: 60px;
+            border-radius: 50px;
             font-family: inherit;
             font-size: clamp(0.8rem, 2vw, 0.9rem);
             font-weight: 700;
@@ -322,39 +334,44 @@
         }
         .nav-link-home {
             background: linear-gradient(135deg, #c084fc, #a855f7);
-            box-shadow: 0 6px 18px rgba(192, 132, 252, 0.25);
+            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.2);
         }
         .nav-link-home:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 28px rgba(192, 132, 252, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(192, 132, 252, 0.3);
         }
         .nav-link-gallery {
             background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
-            box-shadow: 0 6px 18px rgba(255, 107, 157, 0.25);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
         }
         .nav-link-gallery:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 28px rgba(255, 107, 157, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
         }
 
         .empty-msg {
             text-align: center;
             color: #7a5a68;
             padding: 30px 0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         .empty-msg span {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
-            body { padding: 8px; }
-            .app-container { min-height: 100vh; padding: 8px 0; }
+            body { padding: 6px; }
+            .app-container { 
+                min-height: 100vh;
+                padding: 6px 0;
+            }
             .glass-card { 
-                padding: 16px 12px; 
-                border-radius: 30px;
+                padding: 14px 10px; 
+                border-radius: 28px;
+                border-width: 1.5px;
             }
             .timeline-item { 
                 padding: 8px 10px; 
@@ -365,17 +382,34 @@
             .timeline-icon { font-size: 1.3rem; width: 30px; }
             .timeline-list { 
                 gap: 6px;
-                min-height: 140px;
-                max-height: 300px;
-                padding: 4px 4px 6px 4px;
+                min-height: 130px;
+                max-height: 280px;
+                padding: 4px;
                 border-radius: 12px;
             }
             .timeline-content .title { font-size: 0.85rem; }
             .timeline-content .desc { font-size: 0.7rem; }
             .timeline-content .date { font-size: 0.55rem; }
-            .add-form .form-row { flex-direction: column; gap: 4px; }
-            .add-form input, .add-form select { min-width: 100%; font-size: 0.7rem; padding: 5px 8px; }
-            .btn-add { width: 100%; font-size: 0.75rem; padding: 5px 12px; }
+            
+            /* ===== فرم دو به دو ===== */
+            .add-form .form-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+            }
+            .add-form input, .add-form select {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+                border-radius: 10px;
+            }
+            .add-form input::placeholder {
+                font-size: 0.7rem;
+            }
+            .btn-add {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+                border-radius: 10px;
+            }
+            
             .nav-link { 
                 padding: 6px 12px; 
                 font-size: 0.75rem;
@@ -383,30 +417,54 @@
             }
             .nav-links { gap: 4px; margin-top: 10px; }
             .header { margin-bottom: 10px; }
-            .header .emoji-big { font-size: 2.5rem; }
+            .header .emoji-big { font-size: 2.4rem; }
             .add-form { margin-top: 10px; padding-top: 10px; }
             .delete-btn { width: 20px; height: 20px; font-size: 0.6rem; }
         }
 
         @media (max-width: 360px) {
-            .glass-card { padding: 12px 8px; border-radius: 24px; }
+            .glass-card { padding: 10px 8px; border-radius: 24px; }
             .timeline-item { padding: 6px 8px; min-height: 42px; }
             .timeline-icon { font-size: 1.1rem; width: 26px; }
             .timeline-content .title { font-size: 0.75rem; }
             .timeline-content .desc { font-size: 0.65rem; }
             .timeline-content .date { font-size: 0.5rem; }
             .delete-btn { width: 18px; height: 18px; font-size: 0.5rem; }
-            .add-form input, .add-form select { font-size: 0.65rem; padding: 4px 6px; }
-            .btn-add { font-size: 0.65rem; padding: 4px 10px; }
+            
+            .add-form .form-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 4px;
+            }
+            .add-form input, .add-form select {
+                padding: 6px 8px;
+                font-size: 0.75rem;
+                border-radius: 8px;
+            }
+            .add-form input::placeholder {
+                font-size: 0.6rem;
+            }
+            .btn-add {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+                border-radius: 8px;
+            }
+            
             .nav-link { padding: 4px 10px; font-size: 0.65rem; min-width: 40px; }
             .timeline-list { 
                 min-height: 100px;
-                max-height: 250px;
+                max-height: 220px;
             }
         }
 
         @media (min-width: 768px) {
-            .timeline-list { max-height: 520px; min-height: 220px; }
+            .timeline-list { max-height: 480px; min-height: 200px; }
+            .glass-card { padding: 28px 24px; border-radius: 40px; }
+            .add-form .form-row {
+                grid-template-columns: 1fr 1fr 1fr 0.5fr;
+            }
+            .btn-add {
+                grid-column: span 1;
+            }
         }
     </style>
 </head>
@@ -438,12 +496,13 @@
 
             <div class="timeline-list" id="timelineList"></div>
 
+            <!-- ===== فرم اضافه کردن - دو به دو ===== -->
             <div class="add-form">
                 <div class="form-row">
                     <input type="text" id="newDate" placeholder="تاریخ">
                     <input type="text" id="newTitle" placeholder="عنوان">
-                    <input type="text" id="newDesc" placeholder="توضیحات">
-                    <select id="newIcon">
+                    <input type="text" id="newDesc" placeholder="توضیحات" class="full-width">
+                    <select id="newIcon" class="full-width">
                         <option value="💕">💕</option>
                         <option value="❤️">❤️</option>
                         <option value="🌹">🌹</option>
@@ -461,7 +520,7 @@
                         <option value="🎁">🎁</option>
                         <option value="📌">📌</option>
                     </select>
-                    <button class="btn-add" onclick="addTimelineItem()">➕</button>
+                    <button class="btn-add" onclick="addTimelineItem()">➕ اضافه کن</button>
                 </div>
             </div>
 
@@ -501,28 +560,15 @@
             localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         }
 
-        // ===== تابع مرتب‌سازی بر اساس تاریخ =====
         function sortTimelineData(data) {
-            const monthMap = {
-                'جولای': 7,
-                'آگوست': 8,
-                'سپتامبر': 9,
-                'اکتبر': 10,
-                'نوامبر': 11,
-                'دسامبر': 12
-            };
-            
             return data.sort((a, b) => {
-                // استخراج روز از تاریخ
                 const dayA = parseInt(a.date) || 0;
                 const dayB = parseInt(b.date) || 0;
                 return dayB - dayA;
             });
         }
 
-        let timelineData = loadData();
-        // مرتب‌سازی اولیه
-        timelineData = sortTimelineData(timelineData);
+        let timelineData = sortTimelineData(loadData());
         let nextId = timelineData.length > 0 ? Math.max(...timelineData.map(item => item.id)) + 1 : 1;
 
         function renderTimeline() {
@@ -561,7 +607,6 @@
             }
 
             timelineData.push({ id: nextId++, icon, date, title, desc: desc || '' });
-            // مرتب‌سازی بعد از اضافه کردن
             timelineData = sortTimelineData(timelineData);
             saveData(timelineData);
             renderTimeline();
