@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>رویدادهای آینده 📅</title>
+    <title>رویدادهای ما 📅</title>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -153,13 +153,13 @@
         .events-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            padding: 6px 4px 8px 4px;
+            gap: 12px;
+            padding: 8px 4px 10px 4px;
             flex: 1 1 auto;
             overflow-y: auto;
             overflow-x: hidden;
-            min-height: 150px;
-            max-height: 380px;
+            min-height: 200px;
+            max-height: 480px;
             border-radius: 14px;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -178,29 +178,30 @@
         }
 
         .event-item {
-            background: rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(4px);
-            border-radius: 16px;
-            padding: 12px 14px;
+            border-radius: 18px;
+            padding: 14px 18px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             transition: all 0.3s ease;
             flex-shrink: 0;
-            min-height: 65px;
+            min-height: 70px;
             position: relative;
         }
 
         .event-item:hover {
-            background: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.08);
+            background: rgba(255, 255, 255, 0.65);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.1);
+            transform: translateX(-5px);
         }
 
         .event-icon {
-            font-size: 1.8rem;
+            font-size: 2rem;
             flex-shrink: 0;
-            width: 40px;
+            width: 48px;
             text-align: center;
         }
 
@@ -210,128 +211,63 @@
         }
 
         .event-content .event-date {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             color: #7a5a68;
-            font-weight: 500;
+            font-weight: 600;
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .event-content .event-title {
-            font-size: clamp(0.9rem, 2.2vw, 1rem);
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
             font-weight: 700;
             color: #2d1b26;
             word-wrap: break-word;
             overflow-wrap: break-word;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
         .event-content .event-desc {
-            font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+            font-size: clamp(0.8rem, 1.8vw, 0.9rem);
             color: #4f3a44;
-            margin-top: 2px;
+            margin-top: 3px;
             word-wrap: break-word;
             overflow-wrap: break-word;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
-        .delete-event-btn {
-            background: rgba(255, 0, 0, 0.08);
-            border: none;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            color: #e74c3c;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .delete-event-btn:hover {
-            background: rgba(255, 0, 0, 0.2);
-            transform: scale(1.1);
-        }
-
-        .add-form {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1.5px dashed rgba(255, 107, 157, 0.25);
-            flex-shrink: 0;
-        }
-
-        .add-form .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-        }
-
-        .add-form .form-row .full-width {
-            grid-column: 1 / -1;
-        }
-
-        .add-form input, .add-form select, .add-form textarea {
-            padding: 8px 12px;
-            border: 1.5px solid rgba(255, 255, 255, 0.4);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(4px);
-            font-family: inherit;
-            font-size: clamp(0.8rem, 2vw, 0.9rem);
-            color: #2d1b26;
-            outline: none;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .add-form input:focus, .add-form select:focus, .add-form textarea:focus {
-            border-color: #ff6b9d;
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-        .add-form input::placeholder, .add-form textarea::placeholder {
-            color: #8a7a82;
-            font-size: 0.7rem;
-        }
-
-        .add-form textarea {
-            resize: vertical;
-            min-height: 40px;
-            max-height: 80px;
-        }
-
-        .btn-add {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+        .event-badge {
+            font-size: 0.65rem;
+            padding: 3px 14px;
+            border-radius: 30px;
             font-weight: 700;
-            cursor: pointer;
-            background: linear-gradient(135deg, #ff6b9d, #ee5a8b);
-            color: #fff;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
-            grid-column: 1 / -1;
+            flex-shrink: 0;
+            background: rgba(255, 107, 157, 0.12);
+            color: #d94a7a;
+            border: 1px solid rgba(255, 107, 157, 0.15);
         }
 
-        .btn-add:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+        .event-badge.special {
+            background: rgba(255, 193, 7, 0.12);
+            color: #d97706;
+            border: 1px solid rgba(255, 193, 7, 0.15);
         }
 
+        .event-badge.important {
+            background: rgba(192, 132, 252, 0.12);
+            color: #7c3aed;
+            border: 1px solid rgba(192, 132, 252, 0.15);
+        }
+
+        /* ===== دکمه‌های ناوبری ===== */
         .nav-buttons {
             display: flex;
             gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 12px;
+            margin-top: 14px;
             flex-shrink: 0;
-            padding-top: 12px;
+            padding-top: 14px;
             border-top: 1.5px dashed rgba(255, 107, 157, 0.25);
         }
 
@@ -383,43 +319,14 @@
             box-shadow: 0 8px 25px rgba(245, 87, 108, 0.3);
         }
 
-        .empty-msg {
-            text-align: center;
-            color: #7a5a68;
-            padding: 30px 0;
-            font-size: 0.9rem;
+        .nav-btn-events {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
         }
 
-        .empty-msg span {
-            font-size: 2.5rem;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        /* ===== ورودی تاریخ شمسی ===== */
-        .persian-date-input {
-            display: flex;
-            gap: 6px;
-            grid-column: 1 / -1;
-        }
-
-        .persian-date-input select {
-            flex: 1;
-            padding: 8px 12px;
-            border: 1.5px solid rgba(255, 255, 255, 0.4);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(4px);
-            font-family: inherit;
-            font-size: clamp(0.8rem, 2vw, 0.9rem);
-            color: #2d1b26;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .persian-date-input select:focus {
-            border-color: #ff6b9d;
-            background: rgba(255, 255, 255, 0.5);
+        .nav-btn-events:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
         }
 
         @media (max-width: 480px) {
@@ -427,65 +334,35 @@
             .glass-card { padding: 14px 10px; border-radius: 28px; }
             .events-list { 
                 gap: 8px; 
-                min-height: 120px; 
-                max-height: 280px; 
+                min-height: 150px; 
+                max-height: 320px; 
                 padding: 4px; 
                 border-radius: 12px; 
             }
             .event-item { 
                 padding: 10px 12px; 
-                gap: 8px; 
-                min-height: 55px; 
+                gap: 10px; 
+                min-height: 60px; 
                 border-radius: 14px; 
             }
-            .event-icon { font-size: 1.4rem; width: 32px; }
-            .add-form .form-row {
-                grid-template-columns: 1fr 1fr;
-                gap: 5px;
-            }
-            .add-form input, .add-form select, .add-form textarea {
-                padding: 6px 10px;
-                font-size: 0.8rem;
-                border-radius: 10px;
-            }
-            .btn-add {
-                padding: 6px 14px;
-                font-size: 0.8rem;
-                border-radius: 10px;
-            }
+            .event-icon { font-size: 1.5rem; width: 38px; }
             .nav-btn { padding: 6px 12px; font-size: 0.75rem; min-width: 50px; }
             .nav-buttons { gap: 4px; margin-top: 10px; padding-top: 10px; }
             .header .emoji-big { font-size: 2.5rem; }
             .header { margin-bottom: 10px; }
-            .delete-event-btn { width: 20px; height: 20px; font-size: 0.6rem; }
-            .persian-date-input select { padding: 6px 8px; font-size: 0.75rem; }
+            .event-badge { font-size: 0.55rem; padding: 2px 10px; }
         }
 
         @media (max-width: 360px) {
             .glass-card { padding: 10px 8px; border-radius: 24px; }
-            .events-list { min-height: 100px; max-height: 220px; }
-            .event-item { padding: 8px 10px; min-height: 48px; }
-            .event-icon { font-size: 1.2rem; width: 28px; }
-            .add-form .form-row {
-                grid-template-columns: 1fr 1fr;
-                gap: 4px;
-            }
-            .add-form input, .add-form select, .add-form textarea {
-                padding: 4px 8px;
-                font-size: 0.7rem;
-                border-radius: 8px;
-            }
-            .btn-add {
-                padding: 4px 10px;
-                font-size: 0.7rem;
-                border-radius: 8px;
-            }
+            .events-list { min-height: 120px; max-height: 260px; }
+            .event-item { padding: 8px 10px; min-height: 52px; }
+            .event-icon { font-size: 1.2rem; width: 30px; }
             .nav-btn { padding: 4px 10px; font-size: 0.65rem; min-width: 40px; }
-            .persian-date-input select { padding: 4px 6px; font-size: 0.65rem; }
         }
 
         @media (min-width: 768px) {
-            .events-list { max-height: 480px; min-height: 200px; }
+            .events-list { max-height: 520px; min-height: 250px; }
         }
     </style>
 </head>
@@ -511,73 +388,12 @@
 
             <div class="header">
                 <span class="emoji-big">📅</span>
-                <h1>رویدادهای آینده</h1>
-                <p>برنامه‌های قشنگ ما برای آینده...</p>
+                <h1>رویدادهای ویژه ما ❤️</h1>
+                <p>هر تاریخ، یه خاطره‌ی قشنگ...</p>
             </div>
 
-            <div class="events-list" id="eventsList"></div>
-
-            <div class="add-form">
-                <div class="form-row">
-                    <div class="persian-date-input">
-                        <select id="eventYear">
-                            <option value="1404">۱۴۰۴</option>
-                            <option value="1405">۱۴۰۵</option>
-                            <option value="1406">۱۴۰۶</option>
-                        </select>
-                        <select id="eventMonth">
-                            <option value="1">فروردین</option>
-                            <option value="2">اردیبهشت</option>
-                            <option value="3">خرداد</option>
-                            <option value="4">تیر</option>
-                            <option value="5">مرداد</option>
-                            <option value="6">شهریور</option>
-                            <option value="7">مهر</option>
-                            <option value="8">آبان</option>
-                            <option value="9">آذر</option>
-                            <option value="10">دی</option>
-                            <option value="11">بهمن</option>
-                            <option value="12">اسفند</option>
-                        </select>
-                        <select id="eventDay">
-                            <option value="1">۱</option>
-                            <option value="2">۲</option>
-                            <option value="3">۳</option>
-                            <option value="4">۴</option>
-                            <option value="5">۵</option>
-                            <option value="6">۶</option>
-                            <option value="7">۷</option>
-                            <option value="8">۸</option>
-                            <option value="9">۹</option>
-                            <option value="10">۱۰</option>
-                            <option value="11">۱۱</option>
-                            <option value="12">۱۲</option>
-                            <option value="13">۱۳</option>
-                            <option value="14">۱۴</option>
-                            <option value="15">۱۵</option>
-                            <option value="16">۱۶</option>
-                            <option value="17">۱۷</option>
-                            <option value="18">۱۸</option>
-                            <option value="19">۱۹</option>
-                            <option value="20">۲۰</option>
-                            <option value="21">۲۱</option>
-                            <option value="22">۲۲</option>
-                            <option value="23">۲۳</option>
-                            <option value="24">۲۴</option>
-                            <option value="25">۲۵</option>
-                            <option value="26">۲۶</option>
-                            <option value="27">۲۷</option>
-                            <option value="28">۲۸</option>
-                            <option value="29">۲۹</option>
-                            <option value="30">۳۰</option>
-                            <option value="31">۳۱</option>
-                        </select>
-                    </div>
-                    <input type="text" id="eventTitle" placeholder="عنوان رویداد">
-                    <input type="text" id="eventIcon" placeholder="آیکون (مثلاً 🎉)" value="🎉">
-                    <textarea id="eventDesc" placeholder="توضیحات (اختیاری)" class="full-width"></textarea>
-                    <button class="btn-add" onclick="addEvent()">➕ اضافه کن</button>
-                </div>
+            <div class="events-list" id="eventsList">
+                <!-- رویدادها توسط جاوااسکریپت ساخته میشن -->
             </div>
 
             <div class="nav-buttons">
@@ -592,119 +408,82 @@
 
     <script>
         // ============================================
-        // تبدیل تاریخ شمسی به میلادی
+        // لیست رویدادهای ثابت
         // ============================================
         
-        function persianToGregorian(persianYear, persianMonth, persianDay) {
-            // تاریخ مبنا: ۱ فروردین ۱۴۰۴ = ۲۱ مارس ۲۰۲۵
-            const baseDate = new Date(2025, 2, 21); // ۲۱ مارس ۲۰۲۵
-            const daysInPersianMonths = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29];
-            
-            let totalDays = 0;
-            
-            // سال‌های کامل قبل از سال مورد نظر
-            for (let y = 1404; y < persianYear; y++) {
-                totalDays += 365;
-                // کبیسه‌گیری ساده: هر ۴ سال یک بار
-                if ((y - 1404) % 4 === 0) totalDays += 1;
+        const eventsData = [
+            {
+                id: 1,
+                persianDate: '۱۴۰۴/۰۷/۲۱',
+                title: '🎂 تولد نگارم',
+                icon: '🎂',
+                desc: 'روز تولد عشق من، نگار جان ❤️',
+                badge: 'ویژه',
+                badgeType: 'special'
+            },
+            {
+                id: 2,
+                persianDate: '۱۴۰۴/۱۱/۱۸',
+                title: '🎉 تولد کوری',
+                icon: '🎉',
+                desc: 'روز تولد خودم، کوروش عزیز 😊',
+                badge: 'ویژه',
+                badgeType: 'special'
+            },
+            {
+                id: 3,
+                persianDate: '۱۴۰۵/۰۶/۰۷',
+                title: '💕 تاریخ متفاوت',
+                icon: '💕',
+                desc: 'یه تاریخ خاص و متفاوت برای ما ❤️',
+                badge: 'مهم',
+                badgeType: 'important'
+            },
+            {
+                id: 4,
+                persianDate: '۱۴۰۴/۰۶/۰۲',
+                title: '🌹 ماهگرد عشقمون',
+                icon: '🌹',
+                desc: 'یک ماه از عاشقانه‌ترین روزهای زندگیمون ❤️',
+                badge: 'عاشقانه',
+                badgeType: 'important'
+            },
+            {
+                id: 5,
+                persianDate: '۱۴۰۶/۰۵/۰۲',
+                title: '👑 سالگرد بهترین زوج تاریخ',
+                icon: '👑',
+                desc: 'سالگرد روزی که بهترین زوج تاریخ شدیم ❤️🔥',
+                badge: 'طلایی',
+                badgeType: 'special'
             }
-            
-            // ماه‌های کامل قبل از ماه مورد نظر
-            for (let m = 0; m < persianMonth - 1; m++) {
-                totalDays += daysInPersianMonths[m];
-            }
-            
-            // روزهای کامل قبل از روز مورد نظر
-            totalDays += persianDay - 1;
-            
-            const result = new Date(baseDate);
-            result.setDate(result.getDate() + totalDays);
-            
-            return result;
-        }
+        ];
 
         // ============================================
-        // ذخیره‌سازی رویدادها با localStorage
+        // رندر کردن رویدادها
         // ============================================
         
-        const EVENTS_KEY = 'futureEvents';
-
-        function getDefaultEvents() {
-            return [
-                {
-                    id: 1,
-                    persianDate: '۱۴۰۴/۵/۲۵',
-                    title: 'قرار عاشقانه',
-                    icon: '❤️',
-                    desc: 'یه قرار قشنگ با هم دیگه داریم ❤️'
-                },
-                {
-                    id: 2,
-                    persianDate: '۱۴۰۴/۵/۳۰',
-                    title: 'سالگرد آشنایی',
-                    icon: '💕',
-                    desc: 'یک ماه از آشنایی‌مون میگذره!'
-                },
-                {
-                    id: 3,
-                    persianDate: '۱۴۰۴/۶/۳',
-                    title: 'تولد کوروش',
-                    icon: '🎂',
-                    desc: 'تولد کوروش عزیزم 🎉'
-                }
-            ];
-        }
-
-        function loadEvents() {
-            const saved = localStorage.getItem(EVENTS_KEY);
-            if (saved) {
-                try {
-                    const data = JSON.parse(saved);
-                    if (data && data.length > 0) {
-                        return data;
-                    }
-                } catch (e) {
-                    console.log('خطا در بارگذاری رویدادها');
-                }
-            }
-            return getDefaultEvents();
-        }
-
-        function saveEvents(data) {
-            localStorage.setItem(EVENTS_KEY, JSON.stringify(data));
-        }
-
-        let eventsData = loadEvents();
-        let nextId = eventsData.length > 0 ? Math.max(...eventsData.map(item => item.id)) + 1 : 1;
-
-        // ===== مرتب‌سازی بر اساس تاریخ شمسی =====
-        function sortByPersianDate(events) {
-            return events.sort((a, b) => {
-                const partsA = a.persianDate.split('/').map(Number);
-                const partsB = b.persianDate.split('/').map(Number);
-                
-                if (partsA[0] !== partsB[0]) return partsA[0] - partsB[0];
-                if (partsA[1] !== partsB[1]) return partsA[1] - partsB[1];
-                return partsA[2] - partsB[2];
-            });
-        }
-
-        // ===== رندر کردن رویدادها =====
         function renderEvents() {
             const list = document.getElementById('eventsList');
-            
-            const sorted = sortByPersianDate([...eventsData]);
 
-            if (sorted.length === 0) {
+            if (eventsData.length === 0) {
                 list.innerHTML = `
-                    <div class="empty-msg">
-                        <span>📭</span>
-                        هنوز رویدادی ثبت نشده!<br>
-                        اولین رویداد رو اضافه کن ❤️
+                    <div style="text-align:center; color:#7a5a68; padding:40px 0; font-size:0.9rem;">
+                        <span style="font-size:2.5rem; display:block; margin-bottom:8px;">📭</span>
+                        هنوز رویدادی ثبت نشده!
                     </div>
                 `;
                 return;
             }
+
+            // مرتب‌سازی بر اساس تاریخ شمسی
+            const sorted = [...eventsData].sort((a, b) => {
+                const partsA = a.persianDate.split('/').map(Number);
+                const partsB = b.persianDate.split('/').map(Number);
+                if (partsA[0] !== partsB[0]) return partsA[0] - partsB[0];
+                if (partsA[1] !== partsB[1]) return partsA[1] - partsB[1];
+                return partsA[2] - partsB[2];
+            });
 
             list.innerHTML = sorted.map(item => `
                 <div class="event-item" data-id="${item.id}">
@@ -714,132 +493,17 @@
                         <div class="event-title">${item.title}</div>
                         ${item.desc ? `<div class="event-desc">${item.desc}</div>` : ''}
                     </div>
-                    <button class="delete-event-btn" onclick="deleteEvent(${item.id})" title="حذف">✕</button>
+                    <span class="event-badge ${item.badgeType || ''}">${item.badge || 'رویداد'}</span>
                 </div>
             `).join('');
         }
 
-        // ===== اضافه کردن رویداد جدید =====
-        function addEvent() {
-            const yearSelect = document.getElementById('eventYear');
-            const monthSelect = document.getElementById('eventMonth');
-            const daySelect = document.getElementById('eventDay');
-            const titleInput = document.getElementById('eventTitle');
-            const iconInput = document.getElementById('eventIcon');
-            const descInput = document.getElementById('eventDesc');
-
-            const year = yearSelect.value;
-            const month = monthSelect.value.padStart(2, '0');
-            const day = daySelect.value.padStart(2, '0');
-            const persianDate = `${year}/${month}/${day}`;
-            const title = titleInput.value.trim();
-            const icon = iconInput.value.trim() || '📌';
-            const desc = descInput.value.trim();
-
-            if (!title) {
-                alert('لطفاً عنوان رویداد رو وارد کن! ❤️');
-                return;
-            }
-
-            const newEvent = {
-                id: nextId++,
-                persianDate: persianDate,
-                title: title,
-                icon: icon,
-                desc: desc || ''
-            };
-
-            eventsData.push(newEvent);
-            saveEvents(eventsData);
-            renderEvents();
-
-            // پاک کردن فرم
-            titleInput.value = '';
-            iconInput.value = '🎉';
-            descInput.value = '';
-
-            // تنظیم تاریخ به امروز
-            setDefaultDate();
-
-            // اسکرول به پایین
-            const list = document.getElementById('eventsList');
-            setTimeout(() => { list.scrollTop = list.scrollHeight; }, 100);
-        }
-
-        // ===== حذف رویداد =====
-        function deleteEvent(id) {
-            if (confirm('آیا مطمئنی میخوای این رویداد رو حذف کنی؟ 😢')) {
-                eventsData = eventsData.filter(item => item.id !== id);
-                saveEvents(eventsData);
-                renderEvents();
-            }
-        }
-
-        // ===== تنظیم تاریخ امروز به عنوان پیش‌فرض =====
-        function setDefaultDate() {
-            const today = new Date();
-            const persianDate = toPersianDate(today);
-            const parts = persianDate.split('/');
-            
-            document.getElementById('eventYear').value = parts[0];
-            document.getElementById('eventMonth').value = String(parseInt(parts[1]));
-            document.getElementById('eventDay').value = String(parseInt(parts[2]));
-        }
-
-        // ===== تبدیل میلادی به شمسی =====
-        function toPersianDate(gregorianDate) {
-            const baseDate = new Date(2025, 2, 21); // ۱ فروردین ۱۴۰۴
-            const diffDays = Math.floor((gregorianDate - baseDate) / (1000 * 60 * 60 * 24));
-            
-            let year = 1404;
-            let remaining = diffDays;
-            
-            const daysInPersianMonths = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29];
-            
-            // محاسبه سال
-            while (remaining >= 365) {
-                const isLeap = (year - 1404) % 4 === 0;
-                const daysInYear = isLeap ? 366 : 365;
-                if (remaining >= daysInYear) {
-                    remaining -= daysInYear;
-                    year++;
-                } else {
-                    break;
-                }
-            }
-            
-            // محاسبه ماه و روز
-            let month = 0;
-            for (let m = 0; m < daysInPersianMonths.length; m++) {
-                if (remaining < daysInPersianMonths[m]) {
-                    month = m + 1;
-                    break;
-                }
-                remaining -= daysInPersianMonths[m];
-            }
-            
-            const day = remaining + 1;
-            
-            return `${year}/${String(month).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
-        }
-
-        // ===== کلید Enter برای اضافه کردن =====
+        // ============================================
+        // بارگذاری اولیه
+        // ============================================
+        
         document.addEventListener('DOMContentLoaded', function() {
             renderEvents();
-            setDefaultDate();
-
-            const inputs = ['eventTitle', 'eventIcon', 'eventDesc'];
-            inputs.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    el.addEventListener('keypress', function(e) {
-                        if (e.key === 'Enter') {
-                            e.preventDefault();
-                            addEvent();
-                        }
-                    });
-                }
-            });
         });
     </script>
 
